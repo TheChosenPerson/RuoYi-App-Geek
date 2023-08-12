@@ -20,6 +20,13 @@ yarn
 pnpm install
 ```
 
+# 启动
+详见package.json的“scripts”，以下是案例：
+```shell
+:: 微信小程序编译运行
+npm run dev:mp-weixin
+```
+
 # 作者建议
 
 ### 对于选项式
