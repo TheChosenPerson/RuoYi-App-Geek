@@ -1,12 +1,13 @@
 # geek-uniapp-vue3-uview-plus-ucharts
 
 # 介绍
-1. 本框架基于RuoYi框架二次修改，使用Uniapp+Vue3。
-2. 同时支持js或者ts。
-3. 同时支持css、scss、less
-4. 已经引入uview-plus
-5. 已经引入ucharts
-6. 分别提供了uview-plus和ucharts的模板
+* 本框架基于RuoYi-App框架二次修改，使用Uniapp+Vue3。
+* 同时支持js或者ts。
+* 同时支持css、scss、less
+* 已经做了初步分包
+* 已经引入uview-plus
+* 已经引入ucharts
+* 分别提供了uview-plus和ucharts的模板
 
 # 安装
 
@@ -38,17 +39,11 @@ import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：
 ```
 
 ### 对于ucharts
-
 建议即便暂时不使用图表也不要删除它，以后可能会用到。
-
 # 压缩内存
-
 (主包最低809kb左右)
-
 ### 去除模板
-
 （占用主包582kb左右）
-
 1. 删除pages_template、pages_qiun两个文件夹
 2. 删除pages.json中subPackages的root值为“pages_qiun/pages”、“pages_template/pages”的两个配置
 3. 删除pages/template.config.js和pages/template.vue
@@ -57,17 +52,14 @@ import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：
 6. 删除plugins中的config.js和common.js，并在plugins/index.js中删除相关配置
 
 ### 删除uchart
-
 （占用主包175kb左右）
-
 1. 删除components/qiun-data-charts文件夹
 2. 删除pages.json中的easycom下的custom中的"qiun-(.*)"的那一行
 3. 删除pages/index中使用 “qiun-data-charts” 的部分
 
 # 附录
-
-[Vue3官网](https://cn.vuejs.org/)
-[uniapp官网](https://uniapp.dcloud.net.cn/)
-[uView-plus官网](https://uiadmin.net/uview-plus/)
-[uCharts官网](https://www.ucharts.cn/v2/#/)
-[RuoYi官网](http://ruoyi.vip/)
+[Vue3官网](https://cn.vuejs.org/)；
+[uniapp官网](https://uniapp.dcloud.net.cn/)；
+[uView-plus官网](https://uiadmin.net/uview-plus/)；
+[uCharts官网](https://www.ucharts.cn/v2/#/)；
+[RuoYi官网](http://ruoyi.vip/)；
