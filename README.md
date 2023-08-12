@@ -31,7 +31,12 @@ pnpm install
 :: 微信小程序编译运行
 npm run dev:mp-weixin
 ```
+### 代码压缩
+默认是启动代码压缩的，
 
+如果需要关闭代码压缩，可以将vite.config.js中的build.minify赋值为false。
+
+如果需要打开代码压缩，可以将vite.config.js中的build.minify赋值为true。
 # 作者建议
 
 ### 对于选项式
@@ -92,6 +97,7 @@ app.use(uviewPlus)
 2. uni.scss中删除 @import 'uview-plus/theme.scss';
 3. App.vue中删除  @import '@/static/scss/index.scss';
 4. package.json中删除    "clipboard": "^2.0.11","dayjs": "^1.11.9","uview-plus": "^3.1.36",
+
 
 # 附录
 
