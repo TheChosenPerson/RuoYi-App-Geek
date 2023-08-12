@@ -1,39 +1,73 @@
-# geek-uniapp-vue3-uview-plus-uchart
+# geek-uniapp-vue3-uview-plus-ucharts
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项asdasd目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+# 介绍
+1. 本框架基于RuoYi框架二次修改，使用Uniapp+Vue3。
+2. 同时支持js或者ts。
+3. 同时支持css、scss、less
+4. 已经引入uview-plus
+5. 已经引入ucharts
+6. 分别提供了uview-plus和ucharts的模板
 
-#### 软件架构
-软件架构说明
+# 安装
 
+一下三种方式均可，感觉速度 pnpm > yarn > cnpm > npm
 
-#### 安装教程
+```shell
+npm install
+cnpm install
+yarn
+pnpm install
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+# 作者建议
 
-#### 使用说明
+### 对于选项式
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```js
+this.$tab // 建议使用this.$tab进行页面跳转，理由：便于在跳转前处理其他事务
+this.$auth // 建议使用this.$auth进行鉴权操作
+this.$modal // 建议使用this.$modal打开弹窗，理由：便于以后想要使用自定义弹窗
+```
 
-#### 参与贡献
+### 对于组合式
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+```js
+import tab from '@/plugins/tab' // 建议使用tab进行页面跳转，理由：便于在跳转前处理其他事务
+import auth from '@/plugins/auth' // 建议使用auth进行鉴权操作
+import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：便于以后想要使用自定义弹窗
+```
 
+### 对于ucharts
 
-#### 特技
+建议即便暂时不使用图表也不要删除它，以后可能会用到。
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+# 压缩内存
+
+(主包最低809kb左右)
+
+### 去除模板
+
+（占用主包582kb左右）
+
+1. 删除pages_template、pages_qiun两个文件夹
+2. 删除pages.json中subPackages的root值为“pages_qiun/pages”、“pages_template/pages”的两个配置
+3. 删除pages/template.config.js和pages/template.vue
+4. 删除pages.json中subPackages的“tabBar”中的模板一项
+5. 删除static中的uview，里面都是示例图片。
+6. 删除plugins中的config.js和common.js，并在plugins/index.js中删除相关配置
+
+### 删除uchart
+
+（占用主包175kb左右）
+
+1. 删除components/qiun-data-charts文件夹
+2. 删除pages.json中的easycom下的custom中的"qiun-(.*)"的那一行
+3. 删除pages/index中使用 “qiun-data-charts” 的部分
+
+# 附录
+
+[Vue3官网](https://cn.vuejs.org/)
+[uniapp官网](https://uniapp.dcloud.net.cn/)
+[uView-plus官网](https://uiadmin.net/uview-plus/)
+[uCharts官网](https://www.ucharts.cn/v2/#/)
+[RuoYi官网](http://ruoyi.vip/)
