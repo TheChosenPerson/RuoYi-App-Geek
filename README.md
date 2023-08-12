@@ -5,9 +5,9 @@
 * 同时支持js或者ts。
 * 同时支持css、scss、less
 * 已经做了初步分包
-* 已经引入uview-plus
-* 已经引入ucharts
-* 分别提供了uview-plus和ucharts的模板
+* 已经引入uview-plus（好看的ui）
+* 已经引入ucharts（方便的图表）
+* 分别提供了uview-plus和ucharts的模板（可以直接使用或者用于学习）
 
 # 安装
 
