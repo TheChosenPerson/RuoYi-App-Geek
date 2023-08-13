@@ -104,17 +104,17 @@
   
   function handleToInfo() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/info/index'
+	  	url: '/pages_mine/pages/info/index'
 	  });
   };
   function handleToEditInfo() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/info/edit'
+	  	url: '/pages_mine/pages/info/edit'
 	  });
   };
   function handleToSetting() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/setting/index'
+	  	url: '/pages_mine/pages/setting/index'
 	  });
   };
   function handleToLogin() {
@@ -124,7 +124,7 @@
   };
   function handleToAvatar() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/avatar/index'
+	  	url: '/pages_mine/pages/avatar/index'
 	  });
   };
   function handleLogout() {
@@ -143,12 +143,12 @@
   };
   function handleHelp() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/help/index'
+	  	url: '/pages_mine/pages/help/index'
 	  });
   };
   function handleAbout() {
 	  uni.navigateTo({
-	  	url: '/pages_mine/about/index'
+	  	url: '/pages_mine/pages/about/index'
 	  });
   };
   function handleJiaoLiuQun() {
