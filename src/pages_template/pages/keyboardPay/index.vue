@@ -5,19 +5,9 @@
 				<u-icon name="red-packet"></u-icon>
 				<text class="u-padding-left-10">发送1.00元红包</text>
 			</u-button>
-		</view>		
-		<u-keyboard 
-			default=""
-			ref="uKeyboard" 
-			mode="number" 
-			:mask="true" 
-			:mask-close-able="false"
-			:dot-enabled="false" 
-			:show="show"
-			:safe-area-inset-bottom="true"
-			:tooltip="false"
-			@change="onChange"
-			@backspace="onBackspace">
+		</view>
+		<u-keyboard default="" ref="uKeyboard" mode="number" :mask="true" :mask-close-able="false" :dot-enabled="false"
+			:show="show" :safe-area-inset-bottom="true" :tooltip="false" @change="onChange" @backspace="onBackspace">
 			<view>
 				<view class="u-text-center u-padding-20 money">
 					<text>1.00</text>
@@ -27,14 +17,8 @@
 					</view>
 				</view>
 				<view class="u-flex u-row-center">
-					<u-message-input 
-						mode="box" 
-						:maxlength="6"
-						:dot-fill="true"
-						v-model="password"
-						:disabled-keyboard="true"
-						@finish="finish"
-					></u-message-input>
+					<u-message-input mode="box" :maxlength="6" :dot-fill="true" v-model="password" :disabled-keyboard="true"
+						@finish="finish"></u-message-input>
 				</view>
 				<view class="u-text-center u-padding-top-10 u-padding-bottom-20 tips">支付键盘</view>
 			</view>
@@ -43,71 +27,72 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				show:false,
-				password:''
+export default {
+	data() {
+		return {
+			show: false,
+			password: ''
+		}
+	},
+	onLoad() {
+
+	},
+	methods: {
+		onChange(val) {
+			if (this.password.length < 6) {
+				this.password += val;
+			}
+
+			if (this.password.length >= 6) {
+				this.pay();
 			}
 		},
-		onLoad() {
-			
+		onBackspace(e) {
+			if (this.password.length > 0) {
+				this.password = this.password.substring(0, this.password.length - 1);
+			}
 		},
-		methods: {
-			onChange(val){
-				if(this.password.length<6){
-					this.password += val;
-				}
-				
-				if(this.password.length>=6){
-					this.pay();
-				}
-			},
-			onBackspace(e){
-				if(this.password.length>0){
-					this.password = this.password.substring(0,this.password.length-1);
-				}
-			},
-			pay(){
-				uni.showLoading({
-					title:'支付中'
+		pay() {
+			uni.showLoading({
+				title: '支付中'
+			})
+
+			setTimeout(() => {
+				uni.hideLoading();
+				this.show = false;
+				uni.showToast({
+					icon: 'success',
+					title: '支付成功'
 				})
-				
-				setTimeout(()=>{
-					uni.hideLoading();
-					this.show = false;
-					uni.showToast({
-						icon:'success',
-						title:'支付成功'
-					})
-				},2000);
-			},
-			showPop(flag = true){
-				this.password = '';
-				this.show = flag;
-			},
-			finish(){
-				console.log(11111)
-			}
+			}, 2000);
+		},
+		showPop(flag = true) {
+			this.password = '';
+			this.show = flag;
+		},
+		finish() {
+			console.log(11111)
 		}
 	}
+}
 </script>
 
 <style lang="scss">
-	.money{
-		font-size: 80rpx;
-		color: $u-warning;
-		position: relative;
-		
-		.close{
-			position: absolute;
-			top: 20rpx;
-			right: 20rpx;
-			line-height: 28rpx;
-			font-size: 28rpx;
-		}
+.money {
+	font-size: 80rpx;
+	color: $u-warning;
+	position: relative;
+
+	.close {
+		position: absolute;
+		top: 20rpx;
+		right: 20rpx;
+		line-height: 28rpx;
+		font-size: 28rpx;
 	}
-	.tips{
-		color:$u-tips-color;
-	}
+}
+
+.tips {
+	color: $u-tips-color;
+}
 </style>

@@ -104,6 +104,12 @@
       "root": "pages_template/pages",
       "pages": [
         {
+          "path": "index/index",
+          "style": {
+            "pageOrientation": "auto"
+          }
+        },
+        {
           "path": "wxCenter/index",
           "style": {
             "navigationBarTitleText": "wxCenter 仿微信个人中心",

@@ -58,6 +58,12 @@ export default [
 		groupName_en: 'Page',
 		list: [
 			{
+				path: '/pages_template/pages/index/index',
+				icon: 'wxCenter',
+				title: '组件展示',
+				title_en: 'index',
+			},
+			{
 				path: '/pages_template/pages/wxCenter/index',
 				icon: 'wxCenter',
 				title: 'WxCenter 仿微信个人中心',
