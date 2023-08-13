@@ -1,4 +1,4 @@
-# geek-uniapp-vue3-uview-plus-ucharts
+# RuoYi-App-Vue3-uView-plus-uCharts
 
 # 介绍
 
