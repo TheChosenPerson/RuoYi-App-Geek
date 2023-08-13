@@ -31,6 +31,8 @@ pnpm install
 :: 微信小程序编译运行
 npm run dev:mp-weixin
 ```
+成功后使用微信小程序打开：dist\dev\mp-weixin
+
 ### 代码压缩
 默认是启动代码压缩的，
 
