@@ -1,5 +1,5 @@
 <template>
-    <view class="menu" :style="menuStyle"  @click="$emit('click')">
+    <view class="menu" :class="type" :style="menuStyle" @click="$emit('click')">
         <image :src="icon" :style="imageStyle"></image>
     </view>
     <view class="title" :style="titleStype">{{ label }}</view>
@@ -24,6 +24,10 @@ const props = defineProps({
     labelColor: {
         type: String,
         default: '#515151'
+    },
+    type: {
+        type: String,
+        default: 'circle'
     }
 })
 const menuStyle = computed(() => {
@@ -35,12 +39,12 @@ const menuStyle = computed(() => {
 
 const imageStyle = computed(() => {
     return {
-        width: `${props.size}rpx`,
-        height: `${props.size}rpx`
+        width: `${props.size + (props.type === 'rect' ? 20 : 0)}rpx`,
+        height: `${props.size + (props.type === 'rect' ? 20 : 0)}rpx`
     }
 })
 
-const titleStype = computed(()=>{
+const titleStype = computed(() => {
     return {
         width: `${props.size + 40}rpx`,
         color: props.labelColor
@@ -50,9 +54,25 @@ const titleStype = computed(()=>{
   
 <style lang="scss" scoped>
 .menu {
+    padding: 20rpx;
+}
+
+.circle {
+    padding: 20rpx;
     border-radius: 10000px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20rpx;
+
+    &:active {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.rect {
+    padding: 0rpx;
+
+    &:active {
+        opacity: 0.5;
+    }
 }
 
 .title {

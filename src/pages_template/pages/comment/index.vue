@@ -45,7 +45,7 @@ export default {
 		// 跳转到全部回复
 		toAllReply() {
 			uni.navigateTo({
-				url: '/pages/template/comment/reply'
+				url: '/pages_template/pages/comment/reply'
 			});
 		},
 		// 点赞

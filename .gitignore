@@ -2,3 +2,5 @@
 unpackage
 dist
 node_modules
+
+manifest.json

@@ -1,5 +1,17 @@
 export default [
 	{
+		groupName: '组件',
+		groupName_en: 'Page',
+		list: [
+			{
+				path: '/pages_geek/pages/index/index',
+				icon: 'wxCenter',
+				title: '组件展示',
+				title_en: 'index',
+			},
+		]
+	},
+	{
 		groupName: '部件',
 		groupName_en: 'Parts',
 		list: [
@@ -14,13 +26,19 @@ export default [
 				icon: 'citySelect',
 				title: 'CitySelect 城市选择',
 				title_en: 'CitySelect',
-			}, 
+			},
 			{
 				path: '/pages_template/pages/submitBar/index',
 				icon: 'submitBar',
 				title: 'SubmitBar 提交订单栏',
 				title_en: 'SubmitBar',
-			}
+			},
+			{
+				path: '/pages_template/pages/keyboardPay/index',
+				icon: 'keyboardPay',
+				title: 'KeyboardPay 自定义键盘支付模板',
+				title_en: 'KeyboardPay',
+			},
 		]
 	},
 	{
@@ -58,22 +76,10 @@ export default [
 		groupName_en: 'Page',
 		list: [
 			{
-				path: '/pages_template/pages/index/index',
-				icon: 'wxCenter',
-				title: '组件展示',
-				title_en: 'index',
-			},
-			{
 				path: '/pages_template/pages/wxCenter/index',
 				icon: 'wxCenter',
 				title: 'WxCenter 仿微信个人中心',
 				title_en: 'WxCenter',
-			},
-			{
-				path: '/pages_template/pages/keyboardPay/index',
-				icon: 'keyboardPay',
-				title: 'KeyboardPay 自定义键盘支付模板',
-				title_en: 'KeyboardPay',
 			},
 			{
 				path: '/pages_template/pages/mallMenu/index1',
@@ -115,5 +121,5 @@ export default [
 				title_en: 'Address',
 			},
 		]
-	}
+	},
 ]

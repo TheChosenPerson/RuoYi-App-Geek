@@ -36,22 +36,22 @@
 		<!-- 登录 -->
 		<view v-else>
 			<view class="container">
-				<view class="cover slide-top1" :style="'animation-play-state:' + play3">
+				<view class="cover slide-top1" :style="'animation-play-state:' + play[2]">
 					<view class="masking slide-top" :class="[collapsedClass, { animating: isAnimating }]" ref="fixedView"
-						:style="'animation-play-state:' + play1">
+						:style="'animation-play-state:' + play[0]">
 						<uni-row>
 							<text class="text-first">欢迎使用</text>
 							<text class="text-second">校园访客</text>
 							<text class="text-third">预约系统</text>
-							<view :class="{ active: isActive === true, button: isActive !== true }" @click="play"
-								:style="'animation-play-state:' + play2">
+							<view :class="{ active: isActive === true, button: isActive !== true }" @click="startplay"
+								:style="'animation-play-state:' + play[1]">
 								<uni-row>
 									<text class="text-fifth">访客登录</text>
 								</uni-row>
 							</view>
-							<view class="shadow1" :style="'animation-play-state:' + play2" />
-							<view class="shadow2" :style="'animation-play-state:' + play2" />
-							<view class="shadow3" :style="'animation-play-state:' + play2" />
+							<view class="shadow1" :style="'animation-play-state:' + play[1]" />
+							<view class="shadow2" :style="'animation-play-state:' + play[1]" />
+							<view class="shadow3" :style="'animation-play-state:' + play[1]" />
 
 							<image
 								style="width: 100%;height: 1050rpx;opacity: 0.05;border-radius: 0 0 400rpx 400rpx;position: absolute;"
@@ -80,15 +80,11 @@ export default {
 			isFixedViewVisible: true,
 			animationType: "up", // 可选值：right 或 up
 			isAnimating: false, // 控制动画执行状态
-			play1: "paused",
-			play2: "paused",
-			play3: "paused",
-
+			play: ["paused", "paused", "paused"],
 			page: "index",
 
 			codeUrl: "",
 			captchaEnabled: true,
-			globalConfig: getApp().globalData.config,
 			loginForm: {
 				username: "admin",
 				password: "admin123",
@@ -107,30 +103,29 @@ export default {
 	},
 	methods: {
 		login() {
-			this.play3 = "running"
+			this.play[2] = "running"
 			setTimeout(() => { this.page = 'login' }, 1000)
 
 		},
 		back() {
 			this.page = 'index'
-			this.play1 = "paused"
-			this.play2 = "paused"
-			this.play3 = "paused"
-			console.log("index")
+			this.play[0] = "paused"
+			this.play[1] = "paused"
+			this.play[2] = "paused"
 		},
-		play() {
-			this.play2 = "running"
+		startplay() {
+			this.play[1] = "running"
 			this.isActive = true;
 			setTimeout(() => { this.isActive = false; }, 300);
 			if (this.isAnimating) { return; }
 			this.isAnimating = false; // 开始动画执行
-			this.play1 = "running"
+			this.play[0] = "running"
 			this.isFixedViewVisible = !this.isFixedViewVisible;
 			let fixedView = this.$refs.fixedView;
 			if (fixedView)
 				fixedView.addEventListener('transitionend', () => { this.isAnimating = false; }, { once: true });
 
-			setTimeout(() => { uni.navigateBack({delta: 1 }); }, 1000)
+			setTimeout(() => { uni.navigateBack({ delta: 1 }); }, 1000)
 		},
 
 

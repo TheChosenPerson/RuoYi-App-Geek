@@ -7,10 +7,6 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    icon: {
-        type: String,
-        default: ''
-    },
     label: {
         type: String,
         default: "订单数量"
