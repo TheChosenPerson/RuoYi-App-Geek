@@ -65,6 +65,11 @@ import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：
 
 (主包最低809kb左右)
 
+### 删除geek组件
+1. 删除pages_geek和components/geek-xd文件夹
+2. 删除pages.json中subPackages的root值为“pages_geek/pages”的配置
+3. 删除pages/template.config.js中geek组件
+
 ### 去除模板
 
 （占用主包582kb左右）
@@ -75,6 +80,7 @@ import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：
 4. 删除pages.json中subPackages的“tabBar”中的模板一项和“pages”中模板的一项
 5. 删除static中的uview，里面都是示例图片。
 6. 删除plugins中的config.js和common.js，并在plugins/index.js中删除相关配置
+
 
 ### 删除uchart
 

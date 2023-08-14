@@ -1,6 +1,6 @@
 export default [
 	{
-		groupName: '组件',
+		groupName: 'geek组件',
 		groupName_en: 'Page',
 		list: [
 			{
