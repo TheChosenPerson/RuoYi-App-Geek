@@ -1,4 +1,4 @@
-# RuoYi-App-Vue3-uView-plus-uCharts
+# RuoYi-App-Geek
 
 # 介绍
 
@@ -9,6 +9,7 @@
 * 已经引入uview-plus（好看的ui）
 * 已经引入ucharts（方便的图表）
 * 分别提供了uview-plus和ucharts的模板（可以直接使用或者用于学习）
+* 里面还提供了作者自己封装的一些常用组件供大家选择
 
 # 安装
 
