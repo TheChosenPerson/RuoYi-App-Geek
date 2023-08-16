@@ -23,14 +23,14 @@
 
   <uni-section class="mb-10" title="商品列表" sub-title="commodity" type="line"></uni-section>
   <geek-commodity v-for="item, index in commodityList" :key="index" :price="item.price" :title="item.title"
-    :sub-title="item.subTitle" :img="item.img" type="line" @click="modal.msg(item.title)" />
+    :num="item.num" :sub-title="item.subTitle" :img="item.img" type="line" @click="modal.msg(item.title)" />
   <geek-commodity v-for="item, index in commodityList" :key="index" :price="item.price" :title="item.title"
-    :sub-title="item.subTitle" :img="item.img" type="rect" @click="modal.msg(item.title)" />
+    :num="item.num" :sub-title="item.subTitle" :img="item.img" type="rect" @click="modal.msg(item.title)" />
 
 
   <uni-section class="mb-10" title="订单列表" sub-title="order" type="line"></uni-section>
-  <geek-order v-for="item, index in orderList" :img="item.img" :label="item.title" :shop="item.shop" :status="item.status"
-    :price="item.price" @more="modal.msg('更多')" @again="modal.msg('再次购买')" @return="modal.msg('退换')"
+  <geek-order v-for="item, index in orderList" :key="index" :img="item.img" :label="item.title" :shop="item.shop"
+    :status="item.status" :price="item.price" @more="modal.msg('更多')" @again="modal.msg('再次购买')" @return="modal.msg('退换')"
     @sell="modal.msg('卖了换钱')"></geek-order>
 </template>
 
@@ -75,7 +75,9 @@ const orderList = [
     img: '/static/images/banner/banner01.jpg',
     title: '商品1',
     subTitle: '商品1简介',
-    price: 100,
+    price: 100.32,
+    num: 10
+
   },
   {
     shop: 'geek自营旗舰店',
@@ -83,7 +85,17 @@ const orderList = [
     img: '/static/images/banner/banner03.jpg',
     title: '商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商品3',
     subTitle: '商品3简介',
-    price: 200,
+    price: 2000.67,
+    num: 10
+  },
+  {
+    shop: 'geek自营旗舰店',
+    status: '已取消',
+    img: '/static/images/banner/banner03.jpg',
+    title: '商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商品3',
+    subTitle: '商品3简介',
+    price: 10.67,
+    num: 10
   }
 ]
 </script>
