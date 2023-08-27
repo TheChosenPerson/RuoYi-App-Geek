@@ -1,6 +1,6 @@
 export default {
   // 关闭所有页面，打开到应用内的某个页面
-  reLaunch(url) {
+  reLaunch(url:string) {
     return new Promise((resolve, reject) => {
       uni.reLaunch({
         url: url,
@@ -11,7 +11,7 @@ export default {
   },
 
   // 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面
-  switchTab(url) {
+  switchTab(url:string) {
     return new Promise((resolve, reject) => {
       uni.switchTab({
         url: url,
@@ -22,7 +22,7 @@ export default {
   }
   ,
   // 关闭当前页面，跳转到应用内的某个页面
-  redirectTo(url) {
+  redirectTo(url:string) {
     return new Promise((resolve, reject) => {
       uni.redirectTo({
         url: url,
@@ -32,7 +32,7 @@ export default {
     });
   },
   // 保留当前页面，跳转到应用内的某个页面
-  navigateTo(url) {
+  navigateTo(url:string) {
     return new Promise((resolve, reject) => {
       uni.navigateTo({
         url: url,

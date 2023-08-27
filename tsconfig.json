@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "forceConsistentCasingInFileNames":true,
+        "lib": ["es2015"],
+        "baseUrl": "./",
+        "paths": {
+            "@": [
+                "src"
+            ],
+            "@/*": [
+                "src/*"
+            ],
+            "vue": ["node_modules/vue"]
+        }
+    },
+}

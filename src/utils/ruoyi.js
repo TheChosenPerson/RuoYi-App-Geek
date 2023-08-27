@@ -4,6 +4,12 @@
  */
 
 // 日期格式化
+/**
+ * 
+ * @param {*} time 时间(Date对象、时间戳、时间字符串)
+ * @param {*} pattern 格式模板 默认'{y}-{m}-{d} {h}:{i}:{s}'  y:年 m:月 d:日 h:时 i:分 s:秒 a:星期
+ * @returns 按照模板格式的时间字符串
+ */
 export function parseTime(time, pattern) {
 	if (arguments.length === 0 || !time) {
 		return null

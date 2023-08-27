@@ -57,6 +57,8 @@ import UserOperate from "../../components/data-center/user-operate.vue"
 import UserHealthy from "../../components/data-center/user-healthy.vue"
 import UserServer from "../../components/data-center/user-server.vue"
 
+import Config from '../../static/js/config'
+
 export default {
 	components: {
 		WucTab: resolve => require(['@/components/wuc-tab/wuc-tab.vue'], resolve),
@@ -69,8 +71,8 @@ export default {
 	},
 	data() {
 		return {
-			tabList: this.$Config.TABLIST, //标签头
-			timeArray: this.$Config.TIMEARRAY, //时间数组
+			tabList: Config.TABLIST, //标签头
+			timeArray: Config.TIMEARRAY, //时间数组
 			info: '大便超人', //用户数据
 			title: "数据报表中心", //标题
 			showDataTime: "today", //选中的时间

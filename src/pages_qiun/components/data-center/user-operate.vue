@@ -155,7 +155,7 @@
 				illnessDropPrecent,
 				dataTable,
 				delayload:false,
-				isCanvas2d:this.$Config.ISCANVAS2D
+				isCanvas2d:Config.ISCANVAS2D
 			}
 		},
 		mounted() {

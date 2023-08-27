@@ -1,31 +1,31 @@
 export default {
   // 消息提示
-  msg(content) {
+  msg(content:string) {
     uni.showToast({
       title: content,
       icon: 'none'
     })
   },
   // 错误消息
-  msgError(content) {
+  msgError(content:string) {
     uni.showToast({
       title: content,
       icon: 'error'
     })
   },
   // 成功消息
-  msgSuccess(content) {
+  msgSuccess(content:string) {
     uni.showToast({
       title: content,
       icon: 'success'
     })
   },
   // 隐藏消息
-  hideMsg(content) {
+  hideMsg(content:string) {
     uni.hideToast()
   },
   // 弹出提示
-  alert(content) {
+  alert(content:string) {
     uni.showModal({
       title: '提示',
       content: content,
@@ -33,8 +33,8 @@ export default {
     })
   },
   // 确认窗体
-  confirm(content) {
-    return new Promise((resolve, reject) => {
+  confirm(content:string) {
+    return new Promise((resolve:Function, reject:Function) => {
       uni.showModal({
         title: '系统提示',
         content: content,
@@ -49,7 +49,7 @@ export default {
     })
   },
   // 提示信息
-  showToast(option) {
+  showToast(option: string | object) {
     if (typeof option === "object") {
       uni.showToast(option)
     } else {
@@ -61,10 +61,9 @@ export default {
     }
   },
   // 打开遮罩层
-  loading(content) {
+  loading(content:string) {
     uni.showLoading({
-      title: content,
-      icon: 'none'
+      title: content
     })
   },
   // 关闭遮罩层

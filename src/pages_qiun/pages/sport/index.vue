@@ -143,6 +143,7 @@ import heartRateData from "../../static/json/sport/1.json"
 import heartRateRangeData from "../../static/json/sport/2.json"
 import speedRankData from "../../static/json/sport/3.json"
 import speedAndRateData from "../../static/json/sport/4.json"
+import Config from '../../static/js/config'
 
 export default {
 	components: {
@@ -151,7 +152,7 @@ export default {
 	data() {
 		return {
 			info: '大便超人', //用户数据
-			isCanvas2d: this.$Config.ISCANVAS2D,
+			isCanvas2d: Config.ISCANVAS2D,
 			heartRateData: {},
 			speedRankData: {},
 			speedAndRateData: {},

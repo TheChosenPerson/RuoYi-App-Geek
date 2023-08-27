@@ -71,6 +71,8 @@
 	import scanTrandPrecent from '../../static/json/user-healthy/5.json';
 	import miniActive from '../../static/json/user-healthy/6.json';
 	import miniActivePrecent from '../../static/json/user-healthy/7.json';
+
+	import Config from '../../static/js/config'
 	
 	var _self;
 	export default {
@@ -94,7 +96,7 @@
 				miniActive,
 				miniActivePrecent,
 				delayload:false,
-				isCanvas2d:this.$Config.ISCANVAS2D,
+				isCanvas2d:Config.ISCANVAS2D,
 			}
 		},
 		mounted() {

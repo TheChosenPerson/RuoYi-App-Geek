@@ -23,20 +23,20 @@
 
   <uni-section class="mb-10" title="商品列表" sub-title="commodity" type="line"></uni-section>
   <geek-commodity v-for="item, index in commodityList" :key="index" :price="item.price" :title="item.title"
-    :num="item.num" :sub-title="item.subTitle" :img="item.img" type="line" @click="modal.msg(item.title)" />
+    :sub-title="item.subTitle" :img="item.img" type="line" @click="modal.msg(item.title)" />
   <geek-commodity v-for="item, index in commodityList" :key="index" :price="item.price" :title="item.title"
-    :num="item.num" :sub-title="item.subTitle" :img="item.img" type="rect" @click="modal.msg(item.title)" />
+    :sub-title="item.subTitle" :img="item.img" type="rect" @click="modal.msg(item.title)" />
 
 
   <uni-section class="mb-10" title="订单列表" sub-title="order" type="line"></uni-section>
   <geek-order v-for="item, index in orderList" :key="index" :img="item.img" :label="item.title" :shop="item.shop"
     :status="item.status" :price="item.price" @more="modal.msg('更多')" @again="modal.msg('再次购买')" @return="modal.msg('退换')"
-    @sell="modal.msg('卖了换钱')"></geek-order>
+    @sell="modal.msg('卖了换钱')" :num="item.num"></geek-order>
 </template>
 
-<script setup>
-import { ref, reactive, onMounted } from 'vue';
-import modal from '@/plugins/modal.js'
+<script setup lang="ts">
+import { ref, reactive } from 'vue';
+import modal from '@/plugins/modal'
 
 const menus = reactive([
   { icon: "/static/images/icon/rocket.png", label: '抢单' },

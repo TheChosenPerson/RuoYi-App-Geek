@@ -54,6 +54,7 @@ import RankData from '../../static/json/school/1.json';
 import ProductRateData from '../../static/json/school/2.json';
 import RadarModel from '../../static/json/school/3.json';
 import friendTrand from '../../static/json/school/4.json';
+import Config from '../../static/js/config'
 
 export default {
 	components: {
@@ -72,7 +73,7 @@ export default {
 			RankData,
 			ProductRateData,
 			RadarModel,
-			isCanvas2d: this.$Config.ISCANVAS2D,
+			isCanvas2d: Config.ISCANVAS2D,
 			delayload: false, //延时加载图表，否则会出现图表加载完后定位错乱
 		};
 	},

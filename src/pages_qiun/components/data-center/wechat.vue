@@ -61,6 +61,8 @@
 	import friendTrand from '../../static/json/wechat/4.json';
 	import teamTrand from '../../static/json/wechat/5.json';
 	import dataTable from "../../static/json/wechat/6.json"
+
+	import Config from '../../static/js/config'
 	
 	export default {
 		name:'wechat',
@@ -84,7 +86,7 @@
 				dataTable,
 				scrollTop: 0,
 				delayload: false,
-				isCanvas2d: this.$Config.ISCANVAS2D,
+				isCanvas2d: Config.ISCANVAS2D,
 			}
 		},
 		mounted() {

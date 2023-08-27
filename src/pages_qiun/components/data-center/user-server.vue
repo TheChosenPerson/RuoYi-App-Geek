@@ -92,6 +92,8 @@
 	import TrendData from '../../static/json/user-server/3.json';
 	import ServiceComment from '../../static/json/user-server/4.json';
 	import RankData from '../../static/json/user-server/5.json';
+
+	import Config from '../../static/js/config'
 	export default {
 		name:"user-server",
 		props:{
@@ -111,7 +113,7 @@
 				ServiceComment,
 				RankData,
 				isRank:true,
-				isCanvas2d:this.$Config.ISCANVAS2D,
+				isCanvas2d:Config.ISCANVAS2D,
 				delayload: false, //延时加载图表，否则会出现图表加载完后定位错乱
 			}
 		},

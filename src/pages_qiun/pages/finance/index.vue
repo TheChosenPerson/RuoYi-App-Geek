@@ -122,6 +122,8 @@
 import ProgressBar from "../../components/progress-bar/progress-bar.vue"
 import dataOne from '../../static/json/finance/1.json';
 import expendDetail from '../../static/json/finance/2.json';
+
+import Config from '../../static/js/config'
 let _now = new Date();
 let now_time = {};
 now_time.year = _now.getFullYear()
@@ -135,7 +137,7 @@ export default {
 		return {
 			info: '大便超人', //用户数据
 			scrollHeight: "600px", //数据展示体高度
-			isCanvas2d: this.$Config.ISCANVAS2D,
+			isCanvas2d: Config.ISCANVAS2D,
 			historyData: {},
 			dataOne,
 			expendDetail,
