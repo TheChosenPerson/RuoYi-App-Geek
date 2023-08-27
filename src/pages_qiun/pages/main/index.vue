@@ -56,15 +56,18 @@ import Wechat from "../../components/data-center/wechat.vue"
 import UserOperate from "../../components/data-center/user-operate.vue"
 import UserHealthy from "../../components/data-center/user-healthy.vue"
 import UserServer from "../../components/data-center/user-server.vue"
+import WucTab from '../../components/wuc-tab/wuc-tab.vue'
+import DropDown from '../../components/drop-down/drop-down.vue'
+import UniCalendar from '../../components/uni-calendar/uni-calendar.vue'
 
 import Config from '../../static/js/config'
 import Common from "../../static/js/common"
 
 export default {
 	components: {
-		WucTab: resolve => require(['@/components/wuc-tab/wuc-tab.vue'], resolve),
-		DropDown: resolve => require(['@/components/drop-down/drop-down.vue'], resolve),
-		UniCalendar: resolve => require(['@/components/uni-calendar/uni-calendar.vue'], resolve),
+		WucTab,
+		DropDown,
+		UniCalendar,
 		Wechat,
 		UserOperate,
 		UserHealthy,
