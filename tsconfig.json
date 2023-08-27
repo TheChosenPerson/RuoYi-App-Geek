@@ -4,7 +4,7 @@
         "forceConsistentCasingInFileNames":true,
         "outDir": "dist/compiled",
         "allowJs": true,
-        "lib": ["es2015"],
+        "lib": ["es2017"],
         "baseUrl": "./",
         "paths": {
             "@": [
