@@ -2,7 +2,6 @@
     "compilerOptions": {
         "strict": true,
         "forceConsistentCasingInFileNames":true,
-        "outFile": "dist/main.js",
         "outDir": "dist/compiled",
         "allowJs": true,
         "lib": ["es2015"],

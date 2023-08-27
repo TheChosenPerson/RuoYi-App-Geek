@@ -58,6 +58,7 @@ import UserHealthy from "../../components/data-center/user-healthy.vue"
 import UserServer from "../../components/data-center/user-server.vue"
 
 import Config from '../../static/js/config'
+import Common from "../../static/js/common"
 
 export default {
 	components: {
@@ -80,9 +81,9 @@ export default {
 			topBar: 17, //导航高
 			top: '180', //下拉栏位置
 			scrollHeight: "100%", //数据展示体高度
-			nowDate: this.$Common.getNowDate(), //现在日期
-			endDate: this.$Common.getNowDate(), //日历可选日期范围的结束时间
-			startDate: this.$Common.getPreMonth(this.$Common.getNowDate()), //日历可选日期范围的开始时间,
+			nowDate: Common.getNowDate(), //现在日期
+			endDate: Common.getNowDate(), //日历可选日期范围的结束时间
+			startDate: Common.getPreMonth(Common.getNowDate()), //日历可选日期范围的开始时间,
 			showCalendar: false,
 		};
 	},
@@ -99,7 +100,7 @@ export default {
 	},
 	methods: {
 		gotoBack() {
-			this.$Common.navigateBack("/index/index");
+			Common.navigateBack("/index/index");
 		},
 		changDrop(index) {
 			if (index == 1 && this.$refs.companyDrop.showList) {
@@ -119,7 +120,7 @@ export default {
 				this.$refs.caleDrop.selectAuto();
 				this.nowDate = e.fulldate;
 				this.showDataTime = e.fulldate.replace(/-/g, "");
-				this.$Common.tipMsg("当前时间:" + this.showDataTime)
+				Common.tipMsg("当前时间:" + this.showDataTime)
 			}
 		},
 		//下拉选择时间
@@ -129,15 +130,15 @@ export default {
 			} else if (this.showDataTime != e.value) {
 				this.showDataTime = e.value;
 				this.showCalendar = false;
-				this.$Common.tipMsg("当前时间:" + this.showDataTime)
+				Common.tipMsg("当前时间:" + this.showDataTime)
 			}
 		},
 		changeLocation(e) {
-			this.$Common.tipMsg("当前选中平台:" + e.text)
+			Common.tipMsg("当前选中平台:" + e.text)
 		},
 		//获取设备信息
 		async getTelephoneInfo() {
-			var telephoneInfo = await this.$Common.getTelephoneInfo();
+			var telephoneInfo = await Common.getTelephoneInfo();
 			let hasHeight = 0;
 			if (telephoneInfo.top >= 40) {
 				this.top = telephoneInfo.statusBarHeight * 2 + 150;

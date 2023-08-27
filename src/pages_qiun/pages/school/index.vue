@@ -55,6 +55,7 @@ import ProductRateData from '../../static/json/school/2.json';
 import RadarModel from '../../static/json/school/3.json';
 import friendTrand from '../../static/json/school/4.json';
 import Config from '../../static/js/config'
+import Common from '../../static/js/common'
 
 export default {
 	components: {
@@ -91,11 +92,11 @@ export default {
 			}, 1000)
 		},
 		gotoBack() {
-			this.$Common.navigateBack("/index/index");
+			Common.navigateBack("/index/index");
 		},
 		//获取设备信息
 		async getTelephoneInfo() {
-			var telephoneInfo = await this.$Common.getTelephoneInfo();
+			var telephoneInfo = await Common.getTelephoneInfo();
 			let hasHeight = 0;
 			if (telephoneInfo.top >= 40) {
 				this.top = telephoneInfo.statusBarHeight * 2 + 150;

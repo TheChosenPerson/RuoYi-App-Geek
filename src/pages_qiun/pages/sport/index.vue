@@ -144,6 +144,7 @@ import heartRateRangeData from "../../static/json/sport/2.json"
 import speedRankData from "../../static/json/sport/3.json"
 import speedAndRateData from "../../static/json/sport/4.json"
 import Config from '../../static/js/config'
+import Common from '../../static/js/common'
 
 export default {
 	components: {
@@ -245,7 +246,7 @@ export default {
 			return new Date(date).getTime()
 		},
 		gotoBack() {
-			this.$Common.navigateBack("/index/index");
+			Common.navigateBack("/index/index");
 		},
 
 	},

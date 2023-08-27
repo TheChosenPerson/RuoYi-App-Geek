@@ -24,6 +24,7 @@
 </template>
 
 <script>
+	import Common from '../../static/js/common'
 	export default {
 		props: {
 			card_menu: {
@@ -56,7 +57,7 @@
 				this.swiper.index = e.detail.current;
 			},
 			toUrl(url){
-				this.$Common.navigateTo(url);
+				Common.navigateTo(url);
 			}
 		}
 	}
