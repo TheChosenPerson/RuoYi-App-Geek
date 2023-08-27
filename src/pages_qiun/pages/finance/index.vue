@@ -2,7 +2,7 @@
 	<view class="body">
 		<!-- <view class="topLine" :style="{height: topBar+'px'}"></view> -->
 		<view class="nav row_align_center" id="nav">
-			<li style="color: #fff;z-index: 999;" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
+			<li class="li_4" style="color: #fff;z-index: 999;" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
 		</view>
 		<view class="top_head">
 			<view class="text_des">
@@ -79,7 +79,7 @@
 							<view class="font-small">{{ item.time }}</view>
 						</view>
 						<view class="icon">
-							<li :class="['iconfont', item.type == 'income' ? 'icon-income' : 'icon-expend']"></li>
+							<li class="li_2" :class="['iconfont', item.type == 'income' ? 'icon-income' : 'icon-expend']"></li>
 						</view>
 						<view class="right_content">
 							<view class="money">{{ item.type == 'income' ? '+' : '-' }}{{ item.money }}</view>
@@ -288,7 +288,7 @@ export default {
 	margin: 0;
 	padding-bottom: 20rpx;
 
-	li {
+	.li_4 {
 		list-style-type: none;
 	}
 
@@ -322,7 +322,7 @@ export default {
 					width: 30%;
 					text-align: center;
 
-					li {
+					.li_2 {
 						font-size: 80rpx;
 					}
 				}

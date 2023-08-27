@@ -2,9 +2,9 @@
 	<view class="body window">
 		<view class="topLine" :style="{ height: topBar + 'px' }"></view>
 		<view class="nav row_align_center" id="nav">
-			<li :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
+			<li class="li_6" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
 			<text class="title">{{ title ? title : '' }}</text>
-			<li class="iconfont icon-zuojiantou back hidden"></li>
+			<li class="iconfont icon-zuojiantou back hidden li_6"></li>
 		</view>
 		<view class="data_body">
 			<scroll-view class="scroll_list" scroll-y :style="{ height: scrollHeight }">
@@ -137,7 +137,7 @@ export default {
 	animation: bganimation 15s infinite;
 }
 
-li {
+.li_6 {
 	list-style-type: none;
 }
 

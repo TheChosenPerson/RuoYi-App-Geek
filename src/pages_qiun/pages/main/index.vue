@@ -4,8 +4,8 @@
 		<view class="topLine" :style="{ height: topBar + 'px' }"></view>
 		<!-- #endif -->
 		<view class="nav row_align_center" id="nav">
-			<li :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
-			<text class="title">{{ title ? title : '' }}</text>
+			<li class="li_5" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()"></li>
+			<text class="title li_5">{{ title ? title : '' }}</text>
 			<li class="iconfont icon-zuojiantou back hidden"></li>
 		</view>
 		<view class="row_align_center head" id="head">
@@ -198,7 +198,7 @@ body {
 	height: 100%;
 }
 
-li {
+.li_5 {
 	list-style-type: none;
 }
 

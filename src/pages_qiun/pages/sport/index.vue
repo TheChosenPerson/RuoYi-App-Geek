@@ -1,7 +1,7 @@
 <template>
 	<view class="body">
 		<view class="nav row_align_center" id="nav">
-			<li style="z-index: 999;font-size: 50rpx;" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()">
+			<li class="li_7" style="z-index: 999;font-size: 50rpx;" :class="['iconfont icon-zuojiantou back']" @click="gotoBack()">
 			</li>
 		</view>
 		<view class="head">
@@ -15,7 +15,7 @@
 			<view class="title">本次评分</view>
 			<view class="detail">
 				<view class="socre">98</view>
-				<li :class="['iconfont icon-up text-green']" @click="gotoBack()"></li>
+				<li class="li_7" :class="['iconfont icon-up text-green']" @click="gotoBack()"></li>
 				<view class="up_socre">0.4</view>
 			</view>
 		</view>
@@ -45,7 +45,7 @@
 		</view>
 		<view class="consume_view">
 			<view class="wrap"><span class="consume_tip">身体消耗</span></view>
-			<li :class="['iconfont icon-niunai consume_icon']"></li>
+			<li class="li_7" :class="['iconfont icon-niunai consume_icon']"></li>
 			<view class="desc">
 				<view class="small_text">约消耗</view>
 				<view class="text_wide_900"><text class="left">1000</text><text class="right">毫升牛奶</text></view>
@@ -53,7 +53,7 @@
 		</view>
 		<view class="heart_rate_view">
 			<view class="left">
-				<li :class="['iconfont icon-zhexiantu']"></li>
+				<li class="li_7" :class="['iconfont icon-zhexiantu']"></li>
 				<text class="title">心率变化曲线</text>
 			</view>
 			<view class="right text_gray">心率变化</view>
@@ -67,7 +67,7 @@
 		</view>
 		<view class="title_view">
 			<view class="left">
-				<li :class="['iconfont icon-xinlv']"></li>
+				<li class="li_7" :class="['iconfont icon-xinlv']"></li>
 				<text class="title">心率区间</text>
 			</view>
 		</view>
@@ -86,28 +86,28 @@
 		</view>
 		<view class="title_view">
 			<view class="left">
-				<li :class="['iconfont icon-pie']"></li>
+				<li class="li_7" :class="['iconfont icon-pie']"></li>
 				<text class="title">运动分析</text>
 			</view>
 		</view>
 		<view class="sport_analysis_view">
 			<view class="top">
-				<li class="iconfont icon-feiji"></li>
+				<li class="iconfont icon-feiji li_7"></li>
 				<text class="title font-s-34">跑步机</text>
 			</view>
 			<view class="middle">
 				<view class="left">
-					<li class="iconfont icon-clock"></li>
+					<li class="iconfont icon-clock li_7"></li>
 					<view>3.24P.M</view>
 				</view>
 				<view class="right">
-					<li class="iconfont icon-huo"></li>
+					<li class="iconfont icon-huo li_7"></li>
 					<view>热量消耗(千卡)</view>
 				</view>
 			</view>
 			<view class="bottom">
 				<view class="left">
-					<li class="iconfont icon-kongxinyuan"></li>
+					<li class="iconfont icon-kongxinyuan li_7"></li>
 					<view>燃烧脂肪</view>
 				</view>
 				<view class="right">
@@ -691,7 +691,7 @@ export default {
 		}
 	}
 
-	li {
+	.li_7 {
 		list-style-type: none;
 	}
 
