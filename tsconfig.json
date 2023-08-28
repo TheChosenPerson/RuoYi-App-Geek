@@ -15,6 +15,5 @@
             ],
             "vue": ["node_modules/vue"]
         },
-    },
-    "include": ["src/**/*.ts", "src/plugins/index.js"]
+    }
 }
