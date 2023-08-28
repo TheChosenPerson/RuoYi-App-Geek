@@ -3,11 +3,14 @@ import config from '@/config'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 import { toast, showConfirm, tansParams } from '@/utils/common'
+import { RequestUploadConfig } from '@/types/request'
 
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const upload = config => {
+
+
+const upload = (config:RequestUploadConfig) => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -31,6 +34,7 @@ const upload = config => {
         success: (res) => {
           let result = JSON.parse(res.data)
           const code = result.code || 200
+          // @ts-ignore
           const msg = errorCode[code] || result.msg || errorCode['default']
           if (code === 200) {
             resolve(result)
@@ -52,6 +56,7 @@ const upload = config => {
           }
         },
         fail: (error) => {
+          // @ts-ignore
           let { message } = error
           if (message == 'Network Error') {
             message = '后端接口连接异常'

@@ -3,27 +3,10 @@ import config from '@/config'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 import { toast, showConfirm, tansParams } from '@/utils/common'
+import { RequestConfig, ResponseData } from '@/types/request'
 
+let timeout = 10000
 const baseUrl = config.baseUrl
-
-interface RequestConfig{
-  headers?:{
-    isToken:boolean
-  },
-  header?:any,
-  params?:any,
-  url:string,
-  method?:"OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT" | undefined
-  baseUrl?:string,
-  timeout?:number | undefined,
-  data?:any
-}
-
-interface ResponseData{
-  code:number,
-  data:any,
-  msg:string
-}
 
 const request = (config:RequestConfig) => {
   // 是否需要设置 token
@@ -41,7 +24,7 @@ const request = (config:RequestConfig) => {
   return new Promise((resolve, reject) => {
     uni.request({
       method: config.method || 'GET',
-      timeout: config.timeout || 10000,
+      timeout: config.timeout || timeout,
       url: config.baseUrl || baseUrl + config.url,
       data: config.data,
       header: config.header,
