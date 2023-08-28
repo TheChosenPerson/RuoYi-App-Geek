@@ -147,3 +147,20 @@ export function deepClone(obj: any) {
     }
     return result;
 }
+
+/**
+ * 深度复制
+ * @param obj 待复制的对象
+ * @param result 要复制到的对象
+ * @returns 复制的对象
+ */
+export function deepCloneTo<T>(obj: T,result:T) {
+    if (obj == null || typeof obj !== 'object') {
+        return obj;
+    }
+    for (let [key, value] of Object.entries(obj)) {
+        // @ts-ignore
+        result[key] = deepClone(value);
+    }
+    return result;
+}
