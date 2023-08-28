@@ -8,8 +8,6 @@ import { RequestUploadConfig } from '@/types/request'
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-
-
 const upload = (config:RequestUploadConfig) => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
