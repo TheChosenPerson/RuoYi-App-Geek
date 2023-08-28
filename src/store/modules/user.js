@@ -47,7 +47,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, password, code, uuid).then(res => {
           setToken(res.token)
-          commit('SET_TOKEN',res.token )
+          commit('SET_TOKEN', res.token)
           resolve()
         }).catch(error => {
           reject(error)
@@ -60,10 +60,8 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
           const user = res.user
-		  //const avatar = (user == null || user.avatar == "" || user.avatar == null) ? "@/static/images/profile.jpg" : baseUrl + user.avatar
-		  /* cloud */
-		  const avatar = (user == null || user.avatar == "" || user.avatar == null) ? "/static/images/profile.jpg" : user.avatar
-		  const username = (user == null || user.userName == "" || user.userName == null) ? "" : user.userName
+          const avatar = (user == null || user.avatar == "" || user.avatar == null) ? "@/static/images/profile.jpg" : baseUrl + user.avatar
+          const username = (user == null || user.userName == "" || user.userName == null) ? "" : user.userName
           if (res.roles && res.roles.length > 0) {
             commit('SET_ROLES', res.roles)
             commit('SET_PERMISSIONS', res.permissions)

@@ -4,10 +4,28 @@ import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 import { toast, showConfirm, tansParams } from '@/utils/common'
 
-let timeout = 10000
 const baseUrl = config.baseUrl
 
-const request = config => {
+interface RequestConfig{
+  headers?:{
+    isToken:boolean
+  },
+  header?:any,
+  params?:any,
+  url:string,
+  method?:"OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT" | undefined
+  baseUrl?:string,
+  timeout?:number | undefined,
+  data?:any
+}
+
+interface ResponseData{
+  code:number,
+  data:any,
+  msg:string
+}
+
+const request = (config:RequestConfig) => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -22,8 +40,8 @@ const request = config => {
   }
   return new Promise((resolve, reject) => {
     uni.request({
-      method: config.method || 'get',
-      timeout: config.timeout || timeout,
+      method: config.method || 'GET',
+      timeout: config.timeout || 10000,
       url: config.baseUrl || baseUrl + config.url,
       data: config.data,
       header: config.header,
@@ -36,8 +54,10 @@ const request = config => {
          return
        } */
       const res = response
-      const code = res.data.code || 200
-      const msg = errorCode[code] || res.data.msg || errorCode['default']
+      const data:ResponseData = res.data as ResponseData
+      const code = data.code || 200
+      // @ts-ignore
+      const msg:string = errorCode[code] || data.msg || errorCode['default']
       if (code === 401) {
         showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
           if (res.confirm) {
