@@ -8,7 +8,7 @@ import { RequestConfig, ResponseData } from '@/types/request'
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const request = (config:RequestConfig) => {
+const request = (config:RequestConfig):Promise<ResponseData> => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -57,7 +57,7 @@ const request = (config:RequestConfig) => {
         toast(msg)
         reject(code)
       }
-      resolve(res.data)
+      resolve(data)
     })
       .catch(error => {
         let { message } = error
