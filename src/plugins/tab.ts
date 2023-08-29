@@ -1,10 +1,23 @@
+let _data:any = {}
+
+function setData(data:any){
+  _data = data
+}
+
+function getData(){
+  return _data
+}
+
+
 export default {
+  getData,
   /**
    * 关闭所有页面，打开到应用内的某个页面
    * @param url 页面路径
    * @returns 
    */
-  reLaunch(url: string): Promise<unknown> {
+  reLaunch(url: string,config:any={}): Promise<unknown> {
+    setData(config.data)
     return new Promise((resolve, reject) => {
       uni.reLaunch({
         url: url,
@@ -19,7 +32,8 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  switchTab(url: string): Promise<unknown> {
+  switchTab(url: string,config:any={}): Promise<unknown> {
+    setData(config.data)
     return new Promise((resolve, reject) => {
       uni.switchTab({
         url: url,
@@ -34,7 +48,8 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  redirectTo(url: string): Promise<unknown> {
+  redirectTo(url: string,config:any={}): Promise<unknown> {
+    setData(config.data)
     return new Promise((resolve, reject) => {
       uni.redirectTo({
         url: url,
@@ -48,7 +63,8 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  navigateTo(url: string): Promise<unknown> {
+  navigateTo(url: string,config:any={}): Promise<unknown> {
+    setData(config.data)
     return new Promise((resolve, reject) => {
       uni.navigateTo({
         url: url,
@@ -62,7 +78,8 @@ export default {
    * 关闭当前页面，返回上一页面或多级页面
    * @returns 
    */
-  navigateBack(): Promise<unknown> {
+  navigateBack(config:any={}): Promise<unknown> {
+    setData(config.data)
     return new Promise((resolve, reject) => {
       uni.navigateBack({
         success: resolve,
