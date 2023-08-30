@@ -8,7 +8,7 @@ import { RequestConfig, ResponseData } from '@/types/request'
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const request = (config:RequestConfig):Promise<ResponseData> => {
+const request = (config: RequestConfig): Promise<ResponseData> => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -37,10 +37,10 @@ const request = (config:RequestConfig):Promise<ResponseData> => {
          return
        } */
       const res = response
-      const data:ResponseData = res.data as ResponseData
+      const data: ResponseData = res.data as ResponseData
       const code = data.code || 200
       // @ts-ignore
-      const msg:string = errorCode[code] || data.msg || errorCode['default']
+      const msg: string = errorCode[code] || data.msg || errorCode['default']
       if (code === 401) {
         showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
           if (res.confirm) {
@@ -58,19 +58,18 @@ const request = (config:RequestConfig):Promise<ResponseData> => {
         reject(code)
       }
       resolve(data)
+    }).catch(error => {
+      let { message } = error
+      if (message === 'Network Error') {
+        message = '后端接口连接异常'
+      } else if (message.includes('timeout')) {
+        message = '系统接口请求超时'
+      } else if (message.includes('Request failed with status code')) {
+        message = '系统接口' + message.substr(message.length - 3) + '异常'
+      }
+      toast(message)
+      reject(error)
     })
-      .catch(error => {
-        let { message } = error
-        if (message === 'Network Error') {
-          message = '后端接口连接异常'
-        } else if (message.includes('timeout')) {
-          message = '系统接口请求超时'
-        } else if (message.includes('Request failed with status code')) {
-          message = '系统接口' + message.substr(message.length - 3) + '异常'
-        }
-        toast(message)
-        reject(error)
-      })
   })
 }
 
