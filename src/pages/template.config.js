@@ -9,6 +9,12 @@ export default [
 				title: '组件展示',
 				title_en: 'index',
 			},
+			{
+				path: '/pages_geek/pages/code/index',
+				icon: 'wxCenter',
+				title: '二维码',
+				title_en: 'index',
+			}
 		]
 	},
 	{

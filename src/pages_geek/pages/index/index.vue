@@ -32,11 +32,27 @@
   <geek-order v-for="item, index in orderList" :key="index" :img="item.img" :label="item.title" :shop="item.shop"
     :status="item.status" :price="item.price" @more="modal.msg('更多')" @again="modal.msg('再次购买')" @return="modal.msg('退换')"
     @sell="modal.msg('卖了换钱')" :num="item.num"></geek-order>
+
+  <uni-section class="mb-10" title="颜色选择器" sub-title="order" type="line"></uni-section>
+  <geek-color-picker ref="gk"></geek-color-picker>
+  <button @click="open()">打开颜色选择器</button>
+
+
+  <uni-section class="mb-10" title="二维码" sub-title="order" type="line"></uni-section>
+  <geek-qrcode cid="qrcode2" ref="qrcode2" val="二维码" :loadMake="true"/>
+
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import modal from '@/plugins/modal'
+const gk = ref(null)
+function open(){
+  //@ts-ignore
+  gk.value.open()
+}
+
+
 
 const menus = reactive([
   { icon: "/static/images/icon/rocket.png", label: '抢单' },
@@ -66,7 +82,6 @@ const commodityList = reactive([
     price: 200,
   }
 ])
-
 
 const orderList = [
   {
@@ -98,6 +113,8 @@ const orderList = [
     num: 10
   }
 ]
+
+
 </script>
 
 <style lang="scss" scoped></style>

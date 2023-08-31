@@ -232,6 +232,9 @@
       "pages": [
         {
           "path": "index/index"
+        },
+        {
+          "path": "code/index"
         }
       ]
     }
