@@ -1,4 +1,6 @@
-const getters = {
+import { GetterTree } from "vuex"
+
+const getters:GetterTree<any,any> = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   name: state => state.user.name,

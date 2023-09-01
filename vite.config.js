@@ -14,5 +14,8 @@ export default defineConfig(() => {
         plugins: [
             uni()
         ],
+        exclude:[
+            /\/README\.md$/,
+        ]
     }
 })

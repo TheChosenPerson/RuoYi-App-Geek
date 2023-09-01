@@ -3,7 +3,7 @@ import getters from './getters'
 import { createStore } from "vuex";
 const store = createStore({
   modules: {
-    user
+    user,
   },
   getters
 });

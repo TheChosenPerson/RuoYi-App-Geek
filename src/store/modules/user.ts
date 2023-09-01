@@ -3,10 +3,12 @@ import storage from '@/utils/storage'
 import constant from '@/utils/constant'
 import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { UserState, UserForm } from '@/types/store'
+import { Module } from 'vuex'
 
 const baseUrl = config.baseUrl
 
-const user = {
+const user: Module<UserState, UserState> = {
   state: {
     token: getToken(),
     name: storage.get(constant.name),
@@ -14,24 +16,23 @@ const user = {
     roles: storage.get(constant.roles),
     permissions: storage.get(constant.permissions)
   },
-
   mutations: {
-    SET_TOKEN: (state, token) => {
+    SET_TOKEN: (state, token: string) => {
       state.token = token
     },
-    SET_NAME: (state, name) => {
+    SET_NAME: (state, name: string) => {
       state.name = name
       storage.set(constant.name, name)
     },
-    SET_AVATAR: (state, avatar) => {
+    SET_AVATAR: (state, avatar: string) => {
       state.avatar = avatar
       storage.set(constant.avatar, avatar)
     },
-    SET_ROLES: (state, roles) => {
+    SET_ROLES: (state, roles: Array<string>) => {
       state.roles = roles
       storage.set(constant.roles, roles)
     },
-    SET_PERMISSIONS: (state, permissions) => {
+    SET_PERMISSIONS: (state, permissions: Array<string>) => {
       state.permissions = permissions
       storage.set(constant.permissions, permissions)
     }
@@ -39,16 +40,16 @@ const user = {
 
   actions: {
     // 登录
-    Login({ commit }, userInfo) {
+    Login({ commit }, userInfo: UserForm) {
       const username = userInfo.username
       const password = userInfo.password
       const code = userInfo.code
       const uuid = userInfo.uuid
       return new Promise((resolve, reject) => {
-        login(username, password, code, uuid).then(res => {
+        login(username, password, code, uuid).then((res: any) => {
           setToken(res.token)
           commit('SET_TOKEN', res.token)
-          resolve()
+          resolve(res)
         }).catch(error => {
           reject(error)
         })
@@ -58,7 +59,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo().then(res => {
+        getInfo().then((res: any) => {
           const user = res.user
           const avatar = (user == null || user.avatar == "" || user.avatar == null) ? "@/static/images/profile.jpg" : baseUrl + user.avatar
           const username = (user == null || user.userName == "" || user.userName == null) ? "" : user.userName
@@ -80,13 +81,13 @@ const user = {
     // 退出系统
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        logout().then((res) => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           commit('SET_PERMISSIONS', [])
           removeToken()
           storage.clean()
-          resolve()
+          resolve(res)
         }).catch(error => {
           reject(error)
         })
