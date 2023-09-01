@@ -3,12 +3,12 @@ import config from '@/config'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 import { toast, showConfirm, tansParams } from '@/utils/common'
-import { RequestUploadConfig } from '@/types/request'
+import { ResponseData, RequestUploadConfig } from '@/types/request'
 
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const upload = (config:RequestUploadConfig) => {
+const upload = <T>(config:RequestUploadConfig):Promise<ResponseData<T>> => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}

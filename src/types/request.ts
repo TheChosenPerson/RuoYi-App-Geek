@@ -30,11 +30,17 @@ export interface RequestUploadConfig extends BaseRequestConfig {
     formData: any
 }
 
-export interface ResponseData {
+export interface ResponseData<T> {
     /** 响应码 */
     code: number,
     /** 响应数据 */
     data: any,
     /** 响应信息 */
     msg: string
+    /** 图片路径 */
+    imgUrl: string,
+    /** 数据总数 */
+    total:number,
+    /** 表格数据 */
+    rows:Array<T>,
 }
