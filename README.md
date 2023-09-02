@@ -43,7 +43,23 @@ npm run dev:mp-weixin
 
 如果需要打开代码压缩，可以将vite.config.js中的build.minify赋值为true。
 
+# 内置组件(geek-xd)
+
+1. 颜色选择器组件
+2. 二维码组件
+3. 圆形菜单组件
+4. 常用的订单组件
+5. 信息展示组件
+
 # 作者建议
+
+plugins下面的tab、auth、modal已经打了上详细的注释文档，使用代码提示的时候应该可以直接看到。
+
+tab: 用于页面的跳转和页面间通讯
+
+auth: 用于鉴权操作
+
+modal: 用于弹窗
 
 ### 对于选项式
 
@@ -59,6 +75,9 @@ this.$modal // 建议使用this.$modal打开弹窗，理由：便于以后想要
 import tab from '@/plugins/tab' // 建议使用tab进行页面跳转，理由：便于在跳转前处理其他事务
 import auth from '@/plugins/auth' // 建议使用auth进行鉴权操作
 import modal from '@/plugins/modal' // 建议使用modal打开弹窗，理由：便于以后想要使用自定义弹窗
+
+// 也可以使用下面的方式
+import { tab, auth, modal} from '@/plugins'
 ```
 
 ### 对于ucharts
