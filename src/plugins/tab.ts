@@ -4,8 +4,8 @@ function setData(data:any){
   _data = data
 }
 
-function getData(){
-  return _data
+function getData<T>(){
+  return _data as T
 }
 
 
