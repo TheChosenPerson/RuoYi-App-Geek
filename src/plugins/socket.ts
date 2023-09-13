@@ -2,8 +2,10 @@ import { getToken } from '@/utils/auth'
 import { generateUUID } from '@/utils/geek';
 let _socket: UniApp.SocketTask;
 let _callback: { [key: string]: (data: any) => void } = {}
+const enableJSON = true // 开启JSON解析消息，需要开启JSON解析消息才能开启uuid和event
 const enableUUID = true // 需要接收信息中包含uuid字段，uuid优先级高于event
 const enableEvent = true // 需要接收信息中包含event字段
+
 
 interface ConnectSocketOption extends UniApp.ConnectSocketOption {
     headers: {
@@ -24,6 +26,9 @@ export default {
             if (getToken() && !isToken) {
                 options.header['Authorization'] = 'Bearer ' + getToken()
             }
+            if(_socket !== undefined){
+                _socket.close({})
+            }
             _socket = uni.connectSocket({
                 url: options.url,
                 header: options.header,
@@ -33,11 +38,13 @@ export default {
             _socket.onError(reject)
             _socket.onOpen(resolve)
             _socket.onMessage(res => {
-                let data = JSON.parse((res || {}).data)
-                if (enableUUID && (data || {}).uuid !== undefined) {
-                    _callback[data.uuid](data)
-                } else if (enableEvent && (data || {}).event !== undefined) {
-                    _callback[data.event](data)
+                if(enableJSON){
+                    let data = JSON.parse((res || {}).data)
+                    if (enableUUID && (data || {}).uuid !== undefined) {
+                        _callback[data.uuid](data)
+                    } else if (enableEvent && (data || {}).event !== undefined) {
+                        _callback[data.event](data)
+                    }
                 }
             })
         })
@@ -46,7 +53,7 @@ export default {
      * 发送信息
      * @param msg 消息，会被处理成json字符串
      * @param uuid 唯一标识,可以传入uuid，也可以传入true自动生成uuid，flase表示该消息不需要单独处理
-     * @returns 
+     * @returns
      */
     send(msg: any, uuid: string | boolean = false) {
         return new Promise((resolve, reject) => {
@@ -70,14 +77,15 @@ export default {
      */
     close() {
         return new Promise((resolve, reject) => {
-            _socket.close({
-                fail: reject
-            })
             let onclose = _socket.onClose
             _socket.onClose(res => {
                 resolve(res)
-                _socket.onClose(onclose)
+                _socket.onClose = onclose
             })
+            _socket.close({
+                fail: reject
+            })
+
         })
     },
     /**
@@ -103,14 +111,18 @@ export default {
      */
     onMessage(callback: (data: any) => void) {
         _socket.onMessage(res => {
-            let data = JSON.parse((res || {}).data)
-            if (enableUUID && (data || {}).uuid !== undefined) {
-                _callback[data.uuid](res)
-                delete _callback[data.uuid]
-            } else if (enableEvent && (data || {}).event !== undefined) {
-                _callback[data.event](res)
-            } else {
-                callback(data)
+            if(enableJSON){
+                let data = JSON.parse((res || {}).data)
+                if (enableUUID && (data || {}).uuid !== undefined) {
+                    _callback[data.uuid](res)
+                    delete _callback[data.uuid]
+                } else if (enableEvent && (data || {}).event !== undefined) {
+                    _callback[data.event](res)
+                } else {
+                    callback(data)
+                }
+            }else{
+                callback(res.data)
             }
         })
     },
