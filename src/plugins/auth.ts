@@ -76,7 +76,7 @@ export default {
    * @param roles 角色数组
    * @returns 
    */
-  hasRoleAnd(roles: Array<string>) {
+  hasRoleAnd(roles: Array<string>): boolean {
     return roles.every(item => {
       return authRole(item)
     })

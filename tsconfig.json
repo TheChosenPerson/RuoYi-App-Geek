@@ -1,19 +1,24 @@
 {
     "compilerOptions": {
-        "strict": true,
-        "forceConsistentCasingInFileNames":true,
-        "outDir": "dist/compiled",
-        "allowJs": true,
-        "lib": ["es2017"],
-        "baseUrl": "./",
-        "paths": {
-            "@": [
-                "src"
-            ],
-            "@/*": [
-                "src/*"
-            ],
-            "vue": ["node_modules/vue"]
-        },
+      "importHelpers": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "dist/compiled",
+      "baseUrl": "./",
+      "allowSyntheticDefaultImports": true,
+      "allowJs": true,
+      "jsx": "preserve",
+      "moduleResolution": "node",
+      "module": "ES2022",
+      "lib": ["ES2020", "dom"],
+      "declaration": true,
+      "paths": {
+        "@": ["src"],
+        "@/*": ["src/*"],
+        "/@/*": ["src/*"],
+        "vue": ["node_modules/vue"],
+        "tslib" : ["node_modules/tslib/tslib.d.ts"]
+      }
     }
-}
+  }
+  
