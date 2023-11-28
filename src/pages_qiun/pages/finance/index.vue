@@ -40,7 +40,7 @@
 					</view>
 				</view>
 				<view class="charts-box" style="height: 200px;">
-					<qiun-data-charts type="line" canvasId="finance_a" :canvas2d="isCanvas2d" :resshow="delayload"
+					<qiun-data-charts type="line" canvasId="finance_a" :canvas2d="isCanvas2d" :reshow="delayload"
 						:opts="{ xAxis: { itemCount: 12, disableGrid: true }, yAxis: { disableGrid: true, data: [{ disabled: true }] } }"
 						:chartData="historyData" />
 				</view>
@@ -51,7 +51,7 @@
 					<text class="margin_stand-samll font-big wide">钱都去哪了</text>
 				</view>
 				<view v-if="delayload" class="charts-box">
-					<qiun-data-charts type="ring" canvasId="finance_b" :canvas2d="isCanvas2d" :resshow="delayload"
+					<qiun-data-charts type="ring" canvasId="finance_b" :canvas2d="isCanvas2d" :reshow="delayload"
 						:opts="{ padding: [15, 0, 4, 0], legend: { position: 'bottom' }, title: { name: expendCount }, subtitle: { name: '支出', fontSize: '20' } }"
 						:chartData="expendDetail" />
 				</view>
