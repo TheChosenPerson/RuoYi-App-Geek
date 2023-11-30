@@ -5,9 +5,9 @@ import store from '@/store'
  * @param {Array} value 校验值
  * @returns {Boolean}
  */
-export function checkPermi(value) {
+export function checkPermi(value:Array<string>) {
   if (value && value instanceof Array && value.length > 0) {
-    const permissions = store.getters && store.getters.permissions
+    const permissions:Array<string> = store.getters && store.getters.permissions
     const permissionDatas = value
     const all_permission = "*:*:*"
 
@@ -30,9 +30,9 @@ export function checkPermi(value) {
  * @param {Array} value 校验值
  * @returns {Boolean}
  */
-export function checkRole(value) {
+export function checkRole(value:Array<string>) {
   if (value && value instanceof Array && value.length > 0) {
-    const roles = store.getters && store.getters.roles
+    const roles:Array<string> = store.getters && store.getters.roles
     const permissionRoles = value
     const super_admin = "admin"
 

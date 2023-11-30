@@ -53,8 +53,7 @@ const upload = <T>(config:RequestUploadConfig):Promise<ResponseData<T>> => {
             reject(code)
           }
         },
-        fail: (error) => {
-          // @ts-ignore
+        fail: (error: any) => {
           let { message } = error
           if (message == 'Network Error') {
             message = '后端接口连接异常'

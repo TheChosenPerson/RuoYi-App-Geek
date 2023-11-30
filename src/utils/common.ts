@@ -2,7 +2,7 @@
 * 显示消息提示框
 * @param content 提示的标题
 */
-export function toast(content) {
+export function toast(content:string) {
   uni.showToast({
     icon: 'none',
     title: content
@@ -13,7 +13,7 @@ export function toast(content) {
 * 显示模态弹窗
 * @param content 提示的标题
 */
-export function showConfirm(content) {
+export function showConfirm(content:string):Promise<any> {
   return new Promise((resolve, reject) => {
     uni.showModal({
       title: '提示',
@@ -31,7 +31,7 @@ export function showConfirm(content) {
 * 参数处理
 * @param params 参数
 */
-export function tansParams(params) {
+export function tansParams(params:any) {
   let result = ''
   for (const propName of Object.keys(params)) {
     const value = params[propName]

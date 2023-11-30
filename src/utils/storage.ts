@@ -10,7 +10,7 @@ let storageNodeKeys = [constant.avatar, constant.name, constant.roles, constant.
 let storageData = uni.getStorageSync(storageKey) || {}
 
 const storage = {
-  set: function(key, value) {
+  set: function(key:string, value:any) {
     if (storageNodeKeys.indexOf(key) != -1) {
       let tmp = uni.getStorageSync(storageKey)
       tmp = tmp ? tmp : {}
@@ -18,10 +18,10 @@ const storage = {
       uni.setStorageSync(storageKey, tmp)
     }
   },
-  get: function(key) {
+  get: function(key:string) {
     return storageData[key] || ""
   },
-  remove: function(key) {
+  remove: function(key:string) {
     delete storageData[key]
     uni.setStorageSync(storageKey, storageData)
   },

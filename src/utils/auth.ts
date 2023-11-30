@@ -1,10 +1,10 @@
 const TokenKey = 'App-Token'
 
-export function getToken() {
+export function getToken():string {
   return uni.getStorageSync(TokenKey)
 }
 
-export function setToken(token) {
+export function setToken(token:string) {
   return uni.setStorageSync(TokenKey, token)
 }
 
