@@ -2,6 +2,7 @@
 export default {
 	onLaunch: function () {
 		console.log('App Launch')
+		/*
 		this.$socket.connect({ url: "ws://127.0.0.1:8080/sc" }).then(res => {
 			console.log("success");
 			this.$socket.onMessage(res => {
@@ -15,6 +16,7 @@ export default {
 			})
 			this.$socket.send({event:"on"})
 		})
+		*/
 	},
 	onShow: function () {
 		console.log('App Show')
