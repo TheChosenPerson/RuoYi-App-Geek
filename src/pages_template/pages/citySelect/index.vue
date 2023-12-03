@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import citySelect from './u-city-select.vue';
+import citySelect from '@/components/u-city-select/u-city-select.vue';
 export default {
 	components: {
 		citySelect
@@ -36,13 +36,14 @@ export default {
 	methods: {
 		cityChange(e) {
 			this.input = e.province.label + '-' + e.city.label + '-' + e.area.label;
+			this.input += e.province.value + '-' + e.city.value + '-' + e.area.value;
 		}
 	}
 };
 </script>
 
 <style scoped>
-	.btn-wrap {
-		margin: 100rpx 30rpx;
-	}
+.btn-wrap {
+	margin: 100rpx 30rpx;
+}
 </style>

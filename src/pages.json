@@ -1,12 +1,13 @@
 {
   "easycom": {
     "custom": {
+      "u-city-select": "@/components/u-city-select/u-city-select.vue",
+      "geek-(.*)": "@/components/geek-xd/components/geek-$1/geek-$1.vue",
+      "gx-(.*)": "@/components/geek-xd/components/geek-$1/geek-$1.vue",
       "^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
       "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
       "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue",
-      "qiun-(.*)": "@/components/qiun-data-charts/components/qiun-$1/qiun-$1.vue",
-      "geek-(.*)": "@/components/geek-xd/components/geek-$1/geek-$1.vue",
-      "gx-(.*)": "@/components/geek-xd/components/geek-$1/geek-$1.vue"
+      "qiun-(.*)": "@/components/qiun-data-charts/components/qiun-$1/qiun-$1.vue"
     }
   },
   "pages": [
