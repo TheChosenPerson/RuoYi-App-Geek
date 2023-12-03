@@ -124,7 +124,6 @@ export default {
 				name: "请选择"
 			}];
 			if (this.isChooseP) {
-				console.log(this.province)
 				tabsList[0]['name'] = this.provinces[this.province]['label'];
 				tabsList[1] = {
 					name: "请选择"
@@ -186,7 +185,6 @@ export default {
 		},
 		tabsChange(value) {
 			this.tabsIndex = value.index;
-			console.log('debug=>', this.tabsIndex);
 		},
 		provinceChange(index) {
 			this.isChooseP = true;
