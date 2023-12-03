@@ -182,6 +182,7 @@ export default {
 		},
 		close() {
 			this.$emit('update:modelValue', false);
+			this.$emit('close');
 		},
 		tabsChange(value) {
 			this.tabsIndex = value.index;
