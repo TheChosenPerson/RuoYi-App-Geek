@@ -1,27 +1,18 @@
-import config from "@/config";
-import storage from "@/utils/storage";
-import constant from "@/utils/constant";
-import { login, logout, getInfo } from "@/api/login";
-import { getToken, setToken, removeToken } from "@/utils/auth";
-import { dictStateType, dictType } from "@/types/store";
-import { Module } from "vuex";
-
-const baseUrl = config.baseUrl;
-
-const dict: Module<dictStateType, dictStateType> = {
-  state: {
+import { defineStore } from "pinia";
+const useDictStore = defineStore("dict", {
+  state: () => ({
     dict: new Array(),
-  },
+  }),
   actions: {
     // 获取字典
-    getDict({ state }, _key) {
+    getDict(_key: string) {
       if (_key == null && _key == "") {
         return null;
       }
       try {
-        for (let i = 0; i < state.dict.length; i++) {
-          if (state.dict[i].key == _key) {
-            return state.dict[i].value;
+        for (let i = 0; i < this.dict.length; i++) {
+          if (this.dict[i].key == _key) {
+            return this.dict[i].value;
           }
         }
       } catch (e) {
@@ -29,21 +20,21 @@ const dict: Module<dictStateType, dictStateType> = {
       }
     },
     // 设置字典
-    setDict({ state }, dict: dictType) {
-      if (dict.key !== null && dict.key !== "") {
-        state.dict.push({
-          key: dict.key,
-          value: dict.value,
+    setDict(_key: string, value: any) {
+      if (_key !== null && _key !== "") {
+        this.dict.push({
+          key: _key,
+          value: value,
         });
       }
     },
     // 删除字典
-    removeDict({ state }, _key) {
+    removeDict(_key: string) {
       var bln = false;
       try {
-        for (let i = 0; i < state.dict.length; i++) {
-          if (state.dict[i].key == _key) {
-            state.dict.splice(i, 1);
+        for (let i = 0; i < this.dict.length; i++) {
+          if (this.dict[i].key == _key) {
+            this.dict.splice(i, 1);
             return true;
           }
         }
@@ -53,12 +44,12 @@ const dict: Module<dictStateType, dictStateType> = {
       return bln;
     },
     // 清空字典
-    cleanDict({ state }) {
-      state.dict = new Array();
+    cleanDict() {
+      this.dict = new Array();
     },
     // 初始字典
     initDict() {},
   },
-};
+});
 
-export default dict;
+export default useDictStore;

@@ -1,4 +1,4 @@
-import store from "@/store";
+import useDictStore from "@/store/modules/dict";
 import { getDicts } from "@/api/system/dict/data";
 import { Ref, ref, toRefs } from "vue";
 
@@ -8,9 +8,9 @@ import { Ref, ref, toRefs } from "vue";
 export function useDict(...args: any[]) {
   const res: Ref<any> = ref({});
   return (() => {
-    args.forEach(async (dictType: string, index) => {
+    args.forEach((dictType, index) => {
       res.value[dictType] = [];
-      const dicts = await store.dispatch("getDict", dictType);
+      const dicts = useDictStore().getDict(dictType);
       if (dicts) {
         res.value[dictType] = dicts;
       } else {
@@ -21,10 +21,7 @@ export function useDict(...args: any[]) {
             elTagType: p.listClass,
             elTagClass: p.cssClass,
           }));
-          store.dispatch("setDict", {
-            key: dictType,
-            value: res.value[dictType],
-          });
+          useDictStore().setDict(dictType, res.value[dictType]);
         });
       }
     });

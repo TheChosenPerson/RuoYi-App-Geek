@@ -1,5 +1,5 @@
 <template>
-  <view class="mine-container" :style="{height: `${windowHeight}px`}">
+  <view class="mine-container" :style="{ height: `${windowHeight}px` }">
     <!--顶部个人信息栏-->
     <view class="header-section">
       <view class="flex padding justify-between">
@@ -86,151 +86,152 @@
 </template>
 
 <script setup>
-  import storage from '@/utils/storage'
-  import store from '@/store'
-  import { ref } from "vue";
-  import config from '@/config.js'
-  const name=store.state.user.name;
-  const version= config.appInfo.version;
-  const avatar=ref(store.state.user.avatar);
-  const windowHeight=ref(uni.getSystemInfoSync().windowHeight - 50);
-  const popup = ref(null);
-  
-  uni.$on('refresh', () => {
-      avatar.value=store.state.user.avatar;
-  }) 
-  
-  console.log(avatar.value)
-  
-  function handleToInfo() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/info/index'
-	  });
-  };
-  function handleToEditInfo() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/info/edit'
-	  });
-  };
-  function handleToSetting() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/setting/index'
-	  });
-  };
-  function handleToLogin() {
-	  uni.reLaunch({
-	  	url: '/pages/login'
-	  });
-  };
-  function handleToAvatar() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/avatar/index'
-	  });
-  };
-  function handleLogout() {
-	  popup.value.open();
-  };
-  function dialogConfirm() {
-  	//console.log('----------------点击确认------------')
-	store.dispatch('LogOut').then(() => {
-			uni.reLaunch({
-				url: '/pages/login'
-			});
-	})
-  };
-  function dialogClose() {
-  	//console.log('点击关闭')
-  };
-  function handleHelp() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/help/index'
-	  });
-  };
-  function handleAbout() {
-	  uni.navigateTo({
-	  	url: '/pages_mine/pages/about/index'
-	  });
-  };
-  function handleJiaoLiuQun() {
-	  uni.showToast({
-	    title: 'QQ群：133713780',
-	    mask: false,
-		icon:"none",
-	    duration: 1000
-	  });
-  };
-  function handleBuilding() {
-	  uni.showToast({
-	    title: '模块建设中~',
-	    mask: false,
-		icon:"none",
-	    duration: 1000
-	  });
-  }
-  
+import { ref } from "vue";
+import config from '@/config.js'
+import useUserStore from '@/store/modules/user'
+const userStore = useUserStore()
+const name = userStore.name;
+const version = config.appInfo.version;
+
+const avatar = ref(userStore.avatar);
+const windowHeight = ref(uni.getSystemInfoSync().windowHeight - 50);
+const popup = ref(null);
+
+uni.$on('refresh', () => {
+  avatar.value = userStore.avatar;
+})
+
+console.log(avatar.value)
+
+function handleToInfo() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/info/index'
+  });
+};
+function handleToEditInfo() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/info/edit'
+  });
+};
+function handleToSetting() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/setting/index'
+  });
+};
+function handleToLogin() {
+  uni.reLaunch({
+    url: '/pages/login'
+  });
+};
+function handleToAvatar() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/avatar/index'
+  });
+};
+function handleLogout() {
+  popup.value.open();
+};
+function dialogConfirm() {
+  //console.log('----------------点击确认------------')
+
+  userStore.logOut().then(() => {
+    uni.reLaunch({
+      url: '/pages/login'
+    });
+  })
+};
+function dialogClose() {
+  //console.log('点击关闭')
+};
+function handleHelp() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/help/index'
+  });
+};
+function handleAbout() {
+  uni.navigateTo({
+    url: '/pages_mine/pages/about/index'
+  });
+};
+function handleJiaoLiuQun() {
+  uni.showToast({
+    title: 'QQ群：133713780',
+    mask: false,
+    icon: "none",
+    duration: 1000
+  });
+};
+function handleBuilding() {
+  uni.showToast({
+    title: '模块建设中~',
+    mask: false,
+    icon: "none",
+    duration: 1000
+  });
+}
+
 </script>
 
 <style lang="scss">
+page {
+  background-color: #f5f6f7;
+}
 
-  page {
-    background-color: #f5f6f7;
-  }
-
-  .mine-container {
-    width: 100%;
-    height: 100%;
+.mine-container {
+  width: 100%;
+  height: 100%;
 
 
-    .header-section {
-      padding: 15px 15px 45px 15px;
-      background-color: #3c96f3;
-      color: white;
+  .header-section {
+    padding: 15px 15px 45px 15px;
+    background-color: #3c96f3;
+    color: white;
 
-      .login-tip {
+    .login-tip {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    .cu-avatar {
+      border: 2px solid #eaeaea;
+
+      .icon {
+        font-size: 40px;
+      }
+    }
+
+    .user-info {
+      margin-left: 15px;
+
+      .u_title {
         font-size: 18px;
-        margin-left: 10px;
-      }
-
-      .cu-avatar {
-        border: 2px solid #eaeaea;
-
-        .icon {
-          font-size: 40px;
-        }
-      }
-
-      .user-info {
-        margin-left: 15px;
-
-        .u_title {
-          font-size: 18px;
-          line-height: 30px;
-        }
+        line-height: 30px;
       }
     }
+  }
 
-    .content-section {
-      position: relative;
-      top: -50px;
+  .content-section {
+    position: relative;
+    top: -50px;
 
-      .mine-actions {
-        margin: 15px 15px;
-        padding: 20px 0px;
-        border-radius: 8px;
-        background-color: white;
+    .mine-actions {
+      margin: 15px 15px;
+      padding: 20px 0px;
+      border-radius: 8px;
+      background-color: white;
 
-        .action-item {
-          .icon {
-            font-size: 28px;
-          }
+      .action-item {
+        .icon {
+          font-size: 28px;
+        }
 
-          .text {
-            display: block;
-            font-size: 13px;
-            margin: 8px 0px;
-          }
+        .text {
+          display: block;
+          font-size: 13px;
+          margin: 8px 0px;
         }
       }
     }
   }
+}
 </style>

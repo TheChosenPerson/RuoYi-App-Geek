@@ -39,7 +39,7 @@ import modal from '@/plugins/modal'
 import { getCodeImg } from '@/api/login'
 import { ref } from "vue";
 import config from '@/config.js'
-import store from '@/store'
+import useUserStore from '@/store/modules/user'
 const codeUrl = ref("");
 const captchaEnabled = ref(true);
 const globalConfig = ref(config);
@@ -49,6 +49,7 @@ const loginForm = ref({
   code: "",
   uuid: ''
 });
+const userStore = useUserStore()
 
 // 获取图形验证码
 function getCode() {
@@ -75,7 +76,7 @@ async function handleLogin() {
 };
 // 密码登录
 async function pwdLogin() {
-  store.dispatch('Login', loginForm.value).then(() => {
+  userStore.login(loginForm.value).then(() => {
     modal.closeLoading()
     loginSuccess()
   }).catch(() => {
@@ -88,8 +89,7 @@ async function pwdLogin() {
 
 function loginSuccess(result) {
   // 设置用户信息
-  store.dispatch('GetInfo').then(res => {
-
+  userStore.getInfo().then(res => {
     uni.switchTab({
       url: '/pages/index'
     });
