@@ -7,7 +7,7 @@ const enableUUID = true // 需要接收信息中包含uuid字段，uuid优先级
 const enableEvent = true // 需要接收信息中包含event字段
 
 
-interface ConnectSocketOption extends UniApp.ConnectSocketOption {
+export interface ConnectSocketOption extends UniApp.ConnectSocketOption {
     headers: {
         isToken: boolean
     }
