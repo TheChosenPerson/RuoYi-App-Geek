@@ -14,4 +14,6 @@ export interface UserForm {
     uuid: string
 }
 
+export type dictType = { key: string; value: string };
+export type dictStateType = { dict: Array<dictType> };
 
