@@ -43,7 +43,6 @@ const useUserStore = defineStore("user", {
         getInfo()
           .then((res: any) => {
             const user = res.user;
-            // @ts-ignore
             const avatar =
               user.avatar == "" || user.avatar == null
                 ? defAva
@@ -67,7 +66,7 @@ const useUserStore = defineStore("user", {
     },
     // 退出系统
     logOut() {
-      return new Promise((resolve, reject) => {
+      return new Promise<null>((resolve, reject) => {
         logout()
           .then(() => {
             this.token = "";
