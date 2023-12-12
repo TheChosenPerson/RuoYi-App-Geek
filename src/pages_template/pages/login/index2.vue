@@ -71,7 +71,7 @@
 </template>
   
 <script>
-
+import useUserStore from '@/store/modules/user'
 export default {
 	data() {
 		return {
@@ -154,7 +154,7 @@ export default {
 		},
 		// 密码登录
 		async pwdLogin() {
-			this.$store.dispatch('Login', this.loginForm).then(() => {
+			useUserStore().login(this.loginForm).then(() => {
 				this.$modal.closeLoading()
 				this.loginSuccess()
 			}).catch(() => {
@@ -166,7 +166,7 @@ export default {
 		// 登录成功后，处理函数
 		loginSuccess(result) {
 			// 设置用户信息
-			this.$store.dispatch('GetInfo').then(res => {
+			useUserStore().getInfo().then(res => {
 				this.$tab.reLaunch('/pages/index')
 			})
 		}

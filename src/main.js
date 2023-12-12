@@ -13,9 +13,10 @@ import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, select
 
 export function createApp() {
   const app = createSSRApp(App)
+  app.use(store)
   app.use(uviewPlus)
   app.use(plugins)
-  app.use(store)
+  
 
   // 全局方法挂载
   app.config.globalProperties.useDict = useDict

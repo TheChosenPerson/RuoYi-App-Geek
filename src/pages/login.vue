@@ -40,6 +40,7 @@ import { getCodeImg } from '@/api/login'
 import { ref } from "vue";
 import config from '@/config.js'
 import useUserStore from '@/store/modules/user'
+const userStore = useUserStore()
 const codeUrl = ref("");
 const captchaEnabled = ref(true);
 const globalConfig = ref(config);
@@ -49,7 +50,7 @@ const loginForm = ref({
   code: "",
   uuid: ''
 });
-const userStore = useUserStore()
+
 
 // 获取图形验证码
 function getCode() {

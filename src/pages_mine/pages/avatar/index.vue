@@ -51,8 +51,9 @@
 
 <script>
 import config from '@/config'
-import store from "@/store"
 import { uploadAvatar } from "@/api/system/user"
+import useUserStore from '@/store/modules/user'
+const userStore = useUserStore()
 
 const baseUrl = config.baseUrl
 let sysInfo = uni.getSystemInfoSync()
@@ -81,7 +82,7 @@ export default {
 	 */
 	data() {
 		return {
-			imageSrc: store.getters.avatar,
+			imageSrc: userStore.avatar,
 			isShowImg: false,
 			// 初始化的宽高
 			cropperInitW: SCREEN_WIDTH,
@@ -270,9 +271,9 @@ export default {
 						uni.hideLoading()
 						let data = { name: 'avatarfile', filePath: res.tempFilePath }
 						uploadAvatar(data).then(response => {
-							//store.commit('SET_AVATAR', response.imgUrl)
+							// userStore.avatar =  response.imgUrl
 							/*cloud*/
-							store.commit('SET_AVATAR', baseUrl + response.imgUrl)
+							userStore.avatar = baseUrl + response.imgUrl
 							uni.showToast({ title: "修改成功", icon: 'success' })
 							uni.$emit('refresh');
 							uni.navigateBack();
