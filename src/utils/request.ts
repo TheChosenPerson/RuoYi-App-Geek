@@ -25,7 +25,7 @@ const request = <T>(config:RequestConfig):Promise<ResponseData<T>> => {
     uni.request({
       method: config.method || 'GET',
       timeout: config.timeout || timeout,
-      url: config.baseUrl || baseUrl + config.url,
+      url: (config.baseUrl || baseUrl) + config.url,
       data: config.data,
       header: config.header,
       dataType: 'json'
