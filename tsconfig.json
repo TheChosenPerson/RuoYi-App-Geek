@@ -3,6 +3,7 @@
       "importHelpers": true,
       "strict": true,
       "forceConsistentCasingInFileNames": true,
+      "downlevelIteration":true,
       "outDir": "dist/compiled",
       "baseUrl": "./",
       "allowSyntheticDefaultImports": true,
