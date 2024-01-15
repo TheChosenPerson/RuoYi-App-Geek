@@ -83,8 +83,8 @@ export function generateUUID(): string {
  */
 export async function getCode() {
   // #ifdef H5
-  let appid = "wx98501e665b0f0596";
-  let url = "http://localhost:3002/index.html";
+  let appid = "";
+  let url = "";
   let code = "";
 
   // 截取url中的code方法
