@@ -10,33 +10,40 @@
       <uni-list-item showExtraIcon="true" :extraIcon="{ type: 'calendar-filled' }" title="创建日期"
         :rightText="user.createTime" />
     </uni-list>
+
+    <u-button @click="register()">绑定微信</u-button>
   </view>
 </template>
 
-<script>
+<script setup>
 import { getUserProfile } from "@/api/system/user"
+import { ref } from "vue";
+import modal from "@/plugins/modal"
 
-export default {
-  data() {
-    return {
-      user: {},
-      roleGroup: "",
-      postGroup: ""
-    }
-  },
-  onLoad() {
-    this.getUser()
-  },
-  methods: {
-    getUser() {
-      getUserProfile().then(response => {
-        this.user = response.data
-        this.roleGroup = response.roleGroup
-        this.postGroup = response.postGroup
-      })
-    }
-  }
+const user = ref({})
+const roleGroup = ref("")
+const postGroup = ref("")
+function getUser() {
+  getUserProfile().then(response => {
+    user.value = response.data
+    roleGroup.value = response.roleGroup
+    postGroup.value = response.postGroup
+  })
 }
+getUser()
+
+import { wxRegister } from "@/api/oauth"
+import { getWxCode } from "@/utils/geek"
+function register(){
+  modal.loading('绑定微信中...')
+  getWxCode().then(res=>{
+    wxRegister('miniapp',res).then(res=>{
+      modal.closeLoading()
+    })
+  })
+  
+}
+
 </script>
 
 <style lang="scss">

@@ -1,8 +1,10 @@
 // 应用全局配置
 const config = {
-   baseUrl: 'https://vue.ruoyi.vip/prod-api',
+  //  baseUrl: 'https://vue.ruoyi.vip/prod-api',
+  // baseUrl: 'http://localhost/prod-api',
+  baseUrl: 'http://localhost:8080',
    //cloud后台网关地址
-   // baseUrl: 'http://192.168.10.3:8080',
+  //  baseUrl: 'http://192.168.10.3:8080',
    // 应用信息
    appInfo: {
      // 应用名称

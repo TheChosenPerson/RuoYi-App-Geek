@@ -40,6 +40,9 @@ import { getCodeImg } from '@/api/login'
 import { ref } from "vue";
 import config from '@/config.js'
 import useUserStore from '@/store/modules/user'
+import { getWxCode } from '@/utils/geek';
+import { wxLogin } from '@/api/oauth';
+import { setToken } from '@/utils/auth';
 const userStore = useUserStore()
 const codeUrl = ref("");
 const captchaEnabled = ref(true);
@@ -50,6 +53,18 @@ const loginForm = ref({
   code: "",
   uuid: ''
 });
+const useWxLogin = ref(true)
+if (useWxLogin.value) {
+  getWxCode().then(res => {
+    console.log(res);
+    wxLogin('miniapp',res).then(res => {
+      if(res.token != null){
+        setToken(res.token);
+        loginSuccess()
+      }
+    });
+  })
+}
 
 
 // 获取图形验证码

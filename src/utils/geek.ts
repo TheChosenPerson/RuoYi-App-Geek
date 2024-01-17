@@ -81,10 +81,9 @@ export function generateUUID(): string {
  * 获取code
  * @returns 生成的code字符串
  */
-export async function getCode() {
+export async function getWxCode(appid?: string,redirect_uri?:string) {
   // #ifdef H5
-  let appid = "";
-  let url = "";
+  if (appid == undefined || redirect_uri == undefined) return ""
   let code = "";
 
   // 截取url中的code方法
@@ -106,16 +105,19 @@ export async function getCode() {
   if (code == undefined || code == "" || code == null) {
     // 如果没有code，则去请求
     console.log("h5");
-    window.location.href =
-      "https://open.weixin.qq.com/connect/oauth2/authorize?" +
+     let href= "https://open.weixin.qq.com/connect/oauth2/authorize?"+
       tansParams({
         appid: appid,
-        redirect_uri: url,
+        redirect_uri: redirect_uri,
         response_type: "code",
         scope: "snsapi_userinfo",
         state: "STATE",
       }) +
       "#wechat_redirect";
+      console.log(href);
+      setTimeout(() => {
+        window.location.href = href;
+      }, 5000);
   } else {
     return code;
   }

@@ -9,7 +9,7 @@ export default defineConfig(() => {
             outDir: 'dist',
         },
         server: {
-            port: '3002'
+            port: '80'
         },
         plugins: [
             uni()
