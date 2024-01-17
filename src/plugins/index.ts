@@ -2,7 +2,7 @@ import Tab from './tab'
 import Auth from './auth'
 import Modal from './modal'
 import Bus from './bus';
-import Socket from './socket'
+import Socket from './socketclient'
 import { App } from 'vue';
 
 

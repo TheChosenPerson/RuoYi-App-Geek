@@ -8,3 +8,4 @@ declare module '*.vue' {
   export default component
 }
 declare module "uview-plus";
+declare module 'mqtt/dist/mqtt';

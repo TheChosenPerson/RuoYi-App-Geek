@@ -1,13 +1,14 @@
 import { getToken } from '@/utils/auth'
 import { generateUUID } from '@/utils/geek';
-let _socket: UniApp.SocketTask;
+let _client: UniApp.SocketTask;
 let _callback: { [key: string]: (data: any) => void } = {}
 const enableJSON = true // 开启JSON解析消息，需要开启JSON解析消息才能开启uuid和event
+const enableJSONEncoding = true // 开启JSON消息编码
 const enableUUID = true // 需要接收信息中包含uuid字段，uuid优先级高于event
 const enableEvent = true // 需要接收信息中包含event字段
 
 
-export interface ConnectSocketOption extends UniApp.ConnectSocketOption {
+export interface SocketConnectConfig extends UniApp.ConnectSocketOption {
     headers: {
         isToken: boolean
     }
@@ -19,25 +20,25 @@ export default {
      * 最简单的用法就是传入{url:"ws://demo"}
      * 当连接成功后触发回调函数
      */
-    connect(options: ConnectSocketOption) {
+    connect(config: SocketConnectConfig) {
         return new Promise((resolve, reject) => {
-            const isToken = (options.headers || {}).isToken === false
-            options.header = options.header || { 'content-type': 'application/json' }
+            const isToken = (config.headers || {}).isToken === false
+            config.header = config.header || { 'content-type': 'application/json' }
             if (getToken() && !isToken) {
-                options.header['Authorization'] = 'Bearer ' + getToken()
+                config.header['Authorization'] = 'Bearer ' + getToken()
             }
-            if(_socket !== undefined){
-                _socket.close({})
+            if(_client !== undefined){
+                _client.close({})
             }
-            _socket = uni.connectSocket({
-                url: options.url,
-                header: options.header,
-                method: options.method || 'GET',
+            _client = uni.connectSocket({
+                url: config.url,
+                header: config.header,
+                method: config.method || 'GET',
                 fail: reject
             });
-            _socket.onError(reject)
-            _socket.onOpen(resolve)
-            _socket.onMessage(res => {
+            _client.onError(reject)
+            _client.onOpen(resolve)
+            _client.onMessage(res => {
                 if(enableJSON){
                     let data = JSON.parse((res || {}).data)
                     if (enableUUID && (data || {}).uuid !== undefined) {
@@ -57,15 +58,18 @@ export default {
      */
     send(msg: any, uuid: string | boolean = false) {
         return new Promise((resolve, reject) => {
+            if(enableJSONEncoding){
+                msg = JSON.stringify(msg)
+            }
             if (enableUUID && uuid != undefined && uuid != "" && uuid != false) {
-                if (uuid == true) {
+                if (uuid === true) {
                     msg.uuid = generateUUID()
                     _callback[msg.uuid] = resolve
                 } else {
                     _callback[uuid] = resolve
                 }
             }
-            _socket.send({
+            _client.send({
                 data: JSON.stringify(msg),
                 fail: reject
             })
@@ -77,12 +81,12 @@ export default {
      */
     close() {
         return new Promise((resolve, reject) => {
-            let onclose = _socket.onClose
-            _socket.onClose(res => {
+            let onclose = _client.onClose
+            _client.onClose(res => {
                 resolve(res)
-                _socket.onClose = onclose
+                _client.onClose = onclose
             })
-            _socket.close({
+            _client.close({
                 fail: reject
             })
 
@@ -93,7 +97,7 @@ export default {
      * @param event 要监听的事件
      * @returns 在回调函数中处理事件
      */
-    on(event: string) {
+    subscribe(event: string) {
         return new Promise((resolve) => {
             _callback[event] = resolve
         })
@@ -102,7 +106,7 @@ export default {
      * 取消监听事件
      * @param event 要取消监听的事件
      */
-    off(event: string) {
+    unsubscribe(event: string) {
         delete _callback[event]
     },
     /**
@@ -110,7 +114,7 @@ export default {
      * @param callback 默认监听事件的处理函数
      */
     onMessage(callback: (data: any) => void) {
-        _socket.onMessage(res => {
+        _client.onMessage(res => {
             if(enableJSON){
                 let data = JSON.parse((res || {}).data)
                 if (enableUUID && (data || {}).uuid !== undefined) {
@@ -131,13 +135,13 @@ export default {
      * @param callback 默认异常事件的处理函数
      */
     onError(callback: (data: any) => void) {
-        _socket.onError(callback)
+        _client.onError(callback)
     },
     /**
      * 定义关闭事件
      * @param callback 默认关闭事件的处理函数
      */
-    onClose(callback: (data: any) => void) {
-        _socket.onError(callback)
+    onClose(callback: () => void) {
+        _client.onError(callback)
     }
 };
