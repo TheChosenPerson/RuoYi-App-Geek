@@ -18,10 +18,15 @@ export const socket = Socket
  */
 export default {
   install(app: App): void {
+    // 页面操作
     app.config.globalProperties.$tab = tab
+    // 认证对象
     app.config.globalProperties.$auth = auth
+    // 模态框对象
     app.config.globalProperties.$modal = modal
+    // 全局事件总线
     app.config.globalProperties.$bus = bus
+    // socket对象
     app.config.globalProperties.$socket = socket
   }
 }
