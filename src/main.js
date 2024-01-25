@@ -5,6 +5,7 @@ import uviewPlus from 'uview-plus'
 
 
 import { createSSRApp } from 'vue'
+import directive from './directive' // directive
 
 import { useDict } from '@/utils/dict'
 import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels } from '@/utils/ruoyi'
@@ -16,7 +17,7 @@ export function createApp() {
   app.use(store)
   app.use(uviewPlus)
   app.use(plugins)
-  
+  directive(app)
 
   // 全局方法挂载
   app.config.globalProperties.useDict = useDict
