@@ -8,7 +8,7 @@ import useUserStore from '@/store/modules/user'
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const request = <T>(config:RequestConfig):Promise<ResponseData<T>> => {
+const request = <T>(config: RequestConfig): Promise<ResponseData<T>> => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -37,10 +37,10 @@ const request = <T>(config:RequestConfig):Promise<ResponseData<T>> => {
          return
        } */
       const res = response
-      const data:ResponseData<T> = res.data as ResponseData<T>
+      const data: ResponseData<T> = res.data as ResponseData<T>
       const code = data.code || 200
       // @ts-ignore
-      const msg:string = errorCode[code] || data.msg || errorCode['default']
+      const msg: string = errorCode[code] || data.msg || errorCode['default']
       if (code === 401) {
         showConfirm('登录状态已过期，您可以继续留在该页面，或者重新登录?').then(res => {
           if (res.confirm) {
@@ -72,6 +72,19 @@ const request = <T>(config:RequestConfig):Promise<ResponseData<T>> => {
         reject(error)
       })
   })
+}
+
+export function postAction(data: any, url: string, isToken: boolean = true) {
+  return request({ data, url, method: 'POST', headers: { isToken }, })
+}
+export function getAction(params: any, url: string, isToken: boolean = true) {
+  return request({ params, url, method: 'GET', headers: { isToken }, })
+}
+export function putAction(data: any, url: string, isToken: boolean = true) {
+  return request({ data, url, method: 'PUT', headers: { isToken }, })
+}
+export function deleteAction(data: any, url: string, isToken: boolean = true) {
+  return request({ data, url, method: 'DELETE', headers: { isToken }, })
 }
 
 export default request
