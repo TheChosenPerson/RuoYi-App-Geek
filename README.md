@@ -2,11 +2,10 @@
 
 本人的其他两个推荐搭配的项目
 
-1. [Ruoyi-SpringBoot3-Geek: 这是若依框架后端的Springboot3版本 (gitee.com)](https://gitee.com/geek-xd/ruoyi-spring-boot3-geek)
-2. [RuoYi-Vue3-Geek: 这是若依框架后端的Vue3版本 (gitee.com)](https://gitee.com/geek-xd/ruo-yi-vue3-geek)
+1. [Ruoyi-SpringBoot3-Geek: 这是若依极客生态的后端Springboot3版本 (gitee.com)](https://gitee.com/geek-xd/ruoyi-spring-boot3-geek)
+2. [RuoYi-Vue3-Geek: 这是若依极客生态的Vue3版本 (gitee.com)](https://gitee.com/geek-xd/ruo-yi-vue3-geek)
 
 与本项目同为一个作者开发，兼容性最好，学习成本最低
-
 
 # 介绍
 
