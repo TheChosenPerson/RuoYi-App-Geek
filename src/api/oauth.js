@@ -7,7 +7,7 @@ import request from '@/utils/request'
  */
 export function wxLogin(source,code) {
     return request({
-        url: `/wx/login/${source}/${code}`,
+        url: `/oauth/wx/login/${source}/${code}`,
         headers: {
             isToken: false
         },
@@ -22,7 +22,7 @@ export function wxLogin(source,code) {
  */
 export function wxRegister(source,code) {
     return request({
-        url: `/wx/register/${source}/${code}`,
+        url: `/oauth/wx/register/${source}/${code}`,
         headers: {
             isToken: true
         },

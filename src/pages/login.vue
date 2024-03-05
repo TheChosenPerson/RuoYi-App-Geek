@@ -45,7 +45,8 @@ import { wxLogin } from '@/api/oauth';
 import { setToken } from '@/utils/auth';
 const userStore = useUserStore()
 const codeUrl = ref("");
-const captchaEnabled = ref(true);
+const captchaEnabled = ref(true); // 是否开启验证码
+const useWxLogin = ref(true); // 是否使用微信登录
 const globalConfig = ref(config);
 const loginForm = ref({
   username: "admin",
@@ -53,7 +54,7 @@ const loginForm = ref({
   code: "",
   uuid: ''
 });
-const useWxLogin = ref(true)
+
 if (useWxLogin.value) {
   getWxCode().then(res => {
     console.log(res);
