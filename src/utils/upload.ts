@@ -4,12 +4,11 @@ import errorCode from '@/utils/errorCode'
 import { toast, showConfirm, tansParams } from '@/utils/common'
 import { ResponseData, RequestUploadConfig } from '@/types/request'
 import useUserStore from '@/store/modules/user'
-const userStore = useUserStore()
 
 let timeout = 10000
 const baseUrl = config.baseUrl
 
-const upload = <T>(config:RequestUploadConfig):Promise<ResponseData<T>> => {
+const upload = <T>(config: RequestUploadConfig): Promise<ResponseData<T>> => {
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
   config.header = config.header || {}
@@ -22,51 +21,52 @@ const upload = <T>(config:RequestUploadConfig):Promise<ResponseData<T>> => {
     url = url.slice(0, -1)
     config.url = url
   }
+  const userStore = useUserStore()
   return new Promise((resolve, reject) => {
-      uni.uploadFile({
-        timeout: config.timeout || timeout,
-        url: baseUrl + config.url,
-        filePath: config.filePath,
-        name: config.name || 'file',
-        header: config.header,
-        formData: config.formData,
-        success: (res) => {
-          let result = JSON.parse(res.data)
-          const code = result.code || 200
-          // @ts-ignore
-          const msg = errorCode[code] || result.msg || errorCode['default']
-          if (code === 200) {
-            resolve(result)
-          } else if (code == 401) {
-            showConfirm("登录状态已过期，您可以继续留在该页面，或者重新登录?").then(res => {
-              if (res.confirm) {
-                userStore.logOut().then(res => {
-                  uni.reLaunch({ url: '/pages/login' })
-                })
-              }
-            })
-            reject('无效的会话，或者会话已过期，请重新登录。')
-          } else if (code === 500) {
-            toast(msg)
-            reject('500')
-          } else if (code !== 200) {
-            toast(msg)
-            reject(code)
-          }
-        },
-        fail: (error: any) => {
-          let { message } = error
-          if (message == 'Network Error') {
-            message = '后端接口连接异常'
-          } else if (message.includes('timeout')) {
-            message = '系统接口请求超时'
-          } else if (message.includes('Request failed with status code')) {
-            message = '系统接口' + message.substr(message.length - 3) + '异常'
-          }
-          toast(message)
-          reject(error)
+    uni.uploadFile({
+      timeout: config.timeout || timeout,
+      url: baseUrl + config.url,
+      filePath: config.filePath,
+      name: config.name || 'file',
+      header: config.header,
+      formData: config.formData,
+      success: (res) => {
+        let result = JSON.parse(res.data)
+        const code = result.code || 200
+        // @ts-ignore
+        const msg = errorCode[code] || result.msg || errorCode['default']
+        if (code === 200) {
+          resolve(result)
+        } else if (code == 401) {
+          showConfirm("登录状态已过期，您可以继续留在该页面，或者重新登录?").then(res => {
+            if (res.confirm) {
+              userStore.logOut().then(res => {
+                uni.reLaunch({ url: '/pages/login' })
+              })
+            }
+          })
+          reject('无效的会话，或者会话已过期，请重新登录。')
+        } else if (code === 500) {
+          toast(msg)
+          reject('500')
+        } else if (code !== 200) {
+          toast(msg)
+          reject(code)
         }
-      })
+      },
+      fail: (error: any) => {
+        let { message } = error
+        if (message == 'Network Error') {
+          message = '后端接口连接异常'
+        } else if (message.includes('timeout')) {
+          message = '系统接口请求超时'
+        } else if (message.includes('Request failed with status code')) {
+          message = '系统接口' + message.substr(message.length - 3) + '异常'
+        }
+        toast(message)
+        reject(error)
+      }
+    })
   })
 }
 
