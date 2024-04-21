@@ -1,24 +1,33 @@
 # RuoYi-App-Geek
+# 引言
+RuoYi-Vue与RuoYi-App是基于SpringBoot2+Vue2打造的企业级开发框架，得到了广大开发者的喜爱和积极反馈。随着技术的迭代进步，SpringBoot3与Vue3逐渐进入开发者的视野。为了满足开发者对于新技术的追求，RuoYi官方文档提供了SpringBoot2至SpringBoot3的升级方法。与此同时，社区也涌现出了RuoYi-Vue3、RuoYi-App-Vue3的版本，展现了开发者社区对于技术升级的热情与努力。
 
+然而，在升级的过程中，官方的方法为了兼顾Java1.8的特性与一些老旧的方法，未完全拥抱**SpringBoot3与Java17**的全部特性。而社区的RuoYi-Vue3、RuoYi-App-Vue3版本由于出自不同的团队之手，**兼容性及整合性**上存在些许**不足**。更为关键的是，尽管这些版本**支持TypeScript**，但**缺乏与之相匹配的tsconfig.json配置文件**，这使得在主流编辑器如VSCode中，TypeScript的语法提示环境并未达到最佳状态。
+
+鉴于此，**RuoYi-Geek生态**应运而生。它旨在为广大开发者提供一个既保留原版本核心特性，又整合社区版优点的全新解决方案。在**RuoYi-Geek**中，我们深入调研了企业开发中常用的RuoYi扩展，并直接在框架中集成，确保开发者能够快速上手，高效开发。同时，我们采用了最新的**SpringBoot3+Vue3**技术栈，彻底移除了为了兼容Java1.8而保留的老旧方法。更为重要的是，我们为TypeScript开发环境加入了常用的tsconfig.json配置，使得开发者在VSCode等编辑器中能够获得更为舒适、便捷的语法提示体验。
+
+**RuoYi-Geek**不仅仅是一个简单的升级版本，更是对于RuoYi生态的一次全面优化与整合。我们相信，通过**RuoYi-Geek生态**，开发者将能够更为高效、愉悦地开发出优秀的企业级应用。
+
+本项目为**RuoYi-Geek生态**的 RuoYi-App部分。
+**注意：**
 本人的其他两个推荐搭配的项目
-
 1. [Ruoyi-SpringBoot3-Geek: 这是若依极客生态的后端Springboot3版本 (gitee.com)](https://gitee.com/geek-xd/ruoyi-spring-boot3-geek)
 2. [RuoYi-Vue3-Geek: 这是若依极客生态的Vue3版本 (gitee.com)](https://gitee.com/geek-xd/ruo-yi-vue3-geek)
 
-与本项目同为一个作者开发，兼容性最好，学习成本最低
+**与Ruoyi-App相比较**
+1. 使用UniApp+Vue3的最新框架
+2. 支持TS、SCSS、LESS等对js和css的扩充语言
+3. 使用Pinia代替Vuex，更加轻巧简单
+4. 使用uView-Plus（好看的ui） 代替uView-ui的ui组件库
+5. 使用uCharts（方便的图表）画图工具
+6. 已经完成了分包操作
+7. 提供了颜色选择器、二维码等常用组件
+8. 将原有内置工具进行类型标定
+9. 分别提供了uview-plus和ucharts的模板（可以直接使用或者用于学习）
+# 快速开始
+**注意：**node版本需要16+
 
-# 介绍
-
-* 本框架基于RuoYi-App框架二次修改，使用Uniapp+Vue3。
-* 同时支持js或者ts。
-* 同时支持css、scss、less
-* 已经做了初步分包
-* 已经引入uview-plus（好看的ui）
-* 已经引入ucharts（方便的图表）
-* 分别提供了uview-plus和ucharts的模板（可以直接使用或者用于学习）
-* 里面还提供了作者自己封装的一些常用组件供大家选择
-
-# 安装
+## 安装
 
 一下三种方式均可，感觉速度 pnpm > yarn > cnpm > npm
 
@@ -33,14 +42,20 @@ pnpm install
 
 # 启动
 
-详见package.json的“scripts”，以下是案例：
+1. 将项目下载到本地
+2. 初始化项目---进入项目根路径运行指令初始化项目
+```npm install```
+4. 运行项目---进入项目根路径运行指令（在package.json能找到所有指令）：
+以微信小程序为例：```npm run dev:mp-weixin```
+以H5为例``` npm run dev:h5```
+7. 查看项目	  以微信小程序为例：
+打开微信开发者工具，导入项目路径 dist\dev\mp-weixin
+以H5为例：打开浏览器，输入控制台输出的地址
+注：公众号属于H5，以微信公众号为例，打开微信开发者工具，输入控制台输出的地址
+9. 打包项目---进入项目根路径运行指令（在package.json能找到所有指令）：
+以微信小程序为例：```npm run build:mp-weixin```
+以H5为例： ```npm run build:h5```
 
-```shell
-:: 微信小程序编译运行
-npm run dev:mp-weixin
-```
-
-成功后使用微信小程序打开：dist\dev\mp-weixin
 
 ### 代码压缩
 
@@ -206,3 +221,6 @@ app.use(uviewPlus)
 [uView-plus官网](https://uiadmin.net/uview-plus/)；
 [uCharts官网](https://www.ucharts.cn/v2/#/)；
 [RuoYi官网](http://ruoyi.vip/)；
+
+**联系我们：**
+QQ：
