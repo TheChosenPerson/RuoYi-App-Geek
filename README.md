@@ -223,4 +223,5 @@ app.use(uviewPlus)
 [RuoYi官网](http://ruoyi.vip/)；
 
 **联系我们：**
-QQ：
+
+QQ交流群：744785891
