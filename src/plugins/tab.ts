@@ -1,13 +1,21 @@
+import { tansParams } from "@/utils/common";
+
+let _params:string = "{}"
+function setParams(params:any){
+  _params = JSON.stringify(params)
+}
+
 export default {
   /**
    * 关闭所有页面，打开到应用内的某个页面
    * @param url 页面路径
    * @returns 
    */
-  reLaunch(url: string): Promise<unknown> {
+  reLaunch(url: string, params: any): Promise<unknown> {
+    setParams(params)
     return new Promise((resolve, reject) => {
       uni.reLaunch({
-        url: url,
+        url: !!params?url + '?' + tansParams(params):url,
         success: resolve,
         fail: reject
       });
@@ -19,10 +27,13 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  switchTab(url: string): Promise<unknown> {
+  switchTab(url: string, params: any): Promise<unknown> {
+    setParams(params)
+    console.log(!!params?url + '?' + tansParams(params):url);
+    
     return new Promise((resolve, reject) => {
       uni.switchTab({
-        url: url,
+        url: !!params?url + '?' + tansParams(params):url,
         success: resolve,
         fail: reject
       });
@@ -34,10 +45,11 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  redirectTo(url: string): Promise<unknown> {
+  redirectTo(url: string, params: any): Promise<unknown> {
+    setParams(params)
     return new Promise((resolve, reject) => {
       uni.redirectTo({
-        url: url,
+        url: !!params?url + '?' + tansParams(params):url,
         success: resolve,
         fail: reject
       });
@@ -48,10 +60,11 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  navigateTo(url: string): Promise<unknown> {
+  navigateTo(url: string, params: any): Promise<unknown> {
+    setParams(params)
     return new Promise((resolve, reject) => {
       uni.navigateTo({
-        url: url,
+        url: !!params?url + '?' + tansParams(params):url,
         success: resolve,
         fail: reject
       });
@@ -70,4 +83,11 @@ export default {
       });
     });
   },
+
+  /**
+   * 获取当前页面参数
+   */
+  getParams(): any {
+    return JSON.parse(_params)
+  }
 }
