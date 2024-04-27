@@ -11,7 +11,7 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  reLaunch(url: string, params: any): Promise<unknown> {
+  reLaunch(url: string, params?: any): Promise<unknown> {
     setParams(params)
     return new Promise((resolve, reject) => {
       uni.reLaunch({
@@ -27,7 +27,7 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  switchTab(url: string, params: any): Promise<unknown> {
+  switchTab(url: string, params?: any): Promise<unknown> {
     setParams(params)
     console.log(!!params?url + '?' + tansParams(params):url);
     
@@ -45,7 +45,7 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  redirectTo(url: string, params: any): Promise<unknown> {
+  redirectTo(url: string, params?: any): Promise<unknown> {
     setParams(params)
     return new Promise((resolve, reject) => {
       uni.redirectTo({
@@ -60,7 +60,7 @@ export default {
    * @param url 页面路径
    * @returns 
    */
-  navigateTo(url: string, params: any): Promise<unknown> {
+  navigateTo(url: string, params?: any): Promise<unknown> {
     setParams(params)
     return new Promise((resolve, reject) => {
       uni.navigateTo({
