@@ -74,16 +74,16 @@ const request = <T>(config: RequestConfig): Promise<ResponseData<T>> => {
   })
 }
 
-export function postAction(url: string, data: any, isToken: boolean = true) {
+export function postAction(url: string, data?: any, isToken: boolean = true) {
   return request({ data, url, method: 'POST', headers: { isToken }, })
 }
-export function getAction(url: string, params: any, isToken: boolean = true) {
+export function getAction(url: string, params?: any, isToken: boolean = true) {
   return request({ params, url, method: 'GET', headers: { isToken }, })
 }
-export function putAction(url: string, data: any, isToken: boolean = true) {
+export function putAction(url: string, data?: any, isToken: boolean = true) {
   return request({ data, url, method: 'PUT', headers: { isToken }, })
 }
-export function deleteAction(url: string, data: any, isToken: boolean = true) {
+export function deleteAction(url: string, data?: any, isToken: boolean = true) {
   return request({ data, url, method: 'DELETE', headers: { isToken }, })
 }
 
