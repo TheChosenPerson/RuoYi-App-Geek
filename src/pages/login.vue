@@ -46,7 +46,7 @@ import { setToken } from '@/utils/auth';
 const userStore = useUserStore()
 const codeUrl = ref("");
 const captchaEnabled = ref(true); // 是否开启验证码
-const useWxLogin = ref(true); // 是否使用微信登录
+const useWxLogin = ref(false); // 是否使用微信登录
 const globalConfig = ref(config);
 const loginForm = ref({
   username: "admin",
