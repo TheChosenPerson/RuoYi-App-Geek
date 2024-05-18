@@ -236,10 +236,16 @@ app.use(uviewPlus);
 
 # 功能演示
 
-<image src="./doc/image/template1.png" />
-<image src="./doc/image/template2.png"  />
-<image src="./doc/image/index.png"  />
-<image src="./doc/image/mallMenu.png"/>
+<table>
+    <tr>
+        <td><image src="./doc/image/template1.png" /></td>
+        <td><image src="./doc/image/template2.png"  /></td>
+    </tr>
+    <tr>
+        <td><image src="./doc/image/index.png"  /></td>
+        <td><image src="./doc/image/mallMenu.png"/></td>
+    </tr>
+</table>
 
 # 附录
 
