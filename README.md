@@ -1,7 +1,5 @@
 # RuoYi-App-Geek
 
-
-
 <p align="center">
     <span>
         <img alt="logo" src="https://oscimg.oschina.net/oscnet/up-d3d0a9303e11d522a06cd263f3079027715.png">
@@ -16,8 +14,6 @@
 <p align="center">
 	<img src="https://img.shields.io/github/license/mashape/apistatus.svg">
 </p>
-
-
 
 # 引言
 
@@ -240,10 +236,10 @@ app.use(uviewPlus);
 
 # 功能演示
 
-<image src="./doc/image/template1.png" style="width: 45%; height: 500px;"/>
-<image src="./doc/image/template2.png" style="width: 45%;height: 500px;" />
-<image src="./doc/image/index.png" style="width: 45%;height: 500px;" />
-<image src="./doc/image/mallMenu.png" style="width: 45%;height: 500px;" />
+<image src="./doc/image/template1.png" />
+<image src="./doc/image/template2.png"  />
+<image src="./doc/image/index.png"  />
+<image src="./doc/image/mallMenu.png"/>
 
 # 附录
 
