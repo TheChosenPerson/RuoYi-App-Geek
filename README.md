@@ -238,12 +238,12 @@ app.use(uviewPlus);
 
 <table>
     <tr>
-        <td><image src="./doc/image/template1.png" /></td>
-        <td><image src="./doc/image/template2.png"  /></td>
+        <td><img src="./doc/image/template1.png" /></td>
+        <td><img src="./doc/image/template2.png"  /></td>
     </tr>
     <tr>
-        <td><image src="./doc/image/index.png"  /></td>
-        <td><image src="./doc/image/mallMenu.png"/></td>
+        <td><img src="./doc/image/index.png"  /></td>
+        <td><img src="./doc/image/mallMenu.png"/></td>
     </tr>
 </table>
 
