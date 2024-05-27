@@ -17,8 +17,8 @@
 					</view>
 				</view>
 				<view class="u-flex u-row-center">
-					<u-message-input mode="box" :maxlength="6" :dot-fill="true" v-model="password" :disabled-keyboard="true"
-						@finish="finish"></u-message-input>
+					<u-message-input mode="box" :maxlength="6" :dot-fill="true" v-model="password"
+						:disabled-keyboard="true" @finish="finish"></u-message-input>
 				</view>
 				<view class="u-text-center u-padding-top-10 u-padding-bottom-20 tips">支付键盘</view>
 			</view>
@@ -35,7 +35,6 @@ export default {
 		}
 	},
 	onLoad() {
-
 	},
 	methods: {
 		onChange(val) {
@@ -69,6 +68,15 @@ export default {
 		showPop(flag = true) {
 			this.password = '';
 			this.show = flag;
+			// #ifdef H5 || WEB
+			setTimeout(() => {
+				const btn = document.querySelector('.u-keyboard__button-wrapper__button.u-keyboard__button-wrapper__button--gray');
+				if (!!btn) {
+					console.log(btn);
+					btn.onclick = this.onBackspace
+				}
+			}, 500)
+			// #endif
 		},
 		finish() {
 			console.log(11111)
