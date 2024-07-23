@@ -15,7 +15,7 @@
  * http://ext.dcloud.net.cn/plugin?id=271
  * 
  -->
-<template>
+ <template>
   <view class="chartsview" :id="'ChartBoxId'+cid">
     <view v-if="mixinDatacomLoading">
       <!-- 自定义加载状态，请改这里 -->
@@ -1251,13 +1251,13 @@ export default {
   },
   mounted() {
     rootdom = {top:0,left:0}
-    // #ifdef H5
     let dm = document.querySelectorAll('uni-main')[0]
     if(dm === undefined){
       dm = document.querySelectorAll('uni-page-wrapper')[0]
     }
-    rootdom = {top:dm.offsetTop,left:dm.offsetLeft}
-    // #endif
+    if(dm !== undefined){
+      rootdom = {top:dm.offsetTop,left:dm.offsetLeft}
+    }
     setTimeout(()=>{
       if(this.rid === null){
         this.$ownerInstance && this.$ownerInstance.callMethod('getRenderType')
@@ -1305,14 +1305,10 @@ export default {
           this.newEChart()
       }else{
         const script = document.createElement('script')
-        // #ifdef APP-VUE
         script.src = './uni_modules/qiun-data-charts/static/app-plus/echarts.min.js'
-        // #endif
-        // #ifdef H5
         const rooturl = window.location.origin
         const directory = instance.getDataset().directory
         script.src = rooturl + directory + 'uni_modules/qiun-data-charts/static/h5/echarts.min.js'
-        // #endif
         script.onload = this.newEChart
         document.head.appendChild(script)
       }
