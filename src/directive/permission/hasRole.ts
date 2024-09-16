@@ -1,11 +1,11 @@
- /**
- * v-hasRole 角色权限处理
- * Copyright (c) 2019 ruoyi
- */
- 
-import useUserStore from '@/store/modules/user'
+/**
+* v-hasRole 角色权限处理
+* Copyright (c) 2019 ruoyi
+*/
 
-export default {
+import useUserStore from '@/store/modules/user'
+import type { Directive } from "vue";
+const vHasRole: Directive = {
   mounted(el, binding, vnode) {
     const { value } = binding
     const super_admin = "admin";
@@ -26,3 +26,5 @@ export default {
     }
   }
 }
+
+export default vHasRole;

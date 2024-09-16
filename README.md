@@ -48,6 +48,13 @@ RuoYi-Vue 与 RuoYi-App 是基于 SpringBoot2+Vue2 打造的企业级开发框�
 
 **注意：**node 版本需要 16+
 
+## 迁移到Hbuilder（不依赖Hbuilder的项目不需要迁移）
+
+1. src路径作为项目根路径
+2. 将index.html、package.json、vite.config.js、tsconfig.json粘贴到src目录下
+3. 在src目录下运行npm install
+
+
 ## 安装
 
 一下三种方式均可，感觉速度 pnpm > yarn > cnpm > npm

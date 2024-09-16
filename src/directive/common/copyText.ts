@@ -1,14 +1,24 @@
+// #ifdef APP-VUE || H5
 /**
 * v-copyText 复制文本内容
 * Copyright (c) 2022 ruoyi
+* v-copyText="要复制的文本内容"
+* v-copyText:callback="复制成功后的回调函数"
+* 点击被标注的元素即可复制文本内容
 */
 
-export default {
-  beforeMount(el, { value, arg }) {
-    if (arg === "callback") {
-      el.$copyCallback = value;
+import type { Directive, DirectiveBinding } from "vue";
+interface ElType extends HTMLElement {
+  $copyValue: string;
+  $copyCallback: Function;
+  $destroyCopy:Function;
+}
+const vCopyText:Directive = {
+  beforeMount(el:ElType , binding:DirectiveBinding) {
+    if (binding.arg === "callback") {
+      el.$copyCallback = binding.value;
     } else {
-      el.$copyValue = value;
+      el.$copyValue = binding.value;
       const handler = () => {
         copyTextToClipboard(el.$copyValue);
         if (el.$copyCallback) {
@@ -20,10 +30,11 @@ export default {
     }
   }
 }
+export default vCopyText;
 
-function copyTextToClipboard(input, { target = document.body } = {}) {
+function copyTextToClipboard(input:string, { target = document.body } = {}) {
   const element = document.createElement('textarea');
-  const previouslyFocusedElement = document.activeElement;
+  const previouslyFocusedElement = document.activeElement  as HTMLElement;
 
   element.value = input;
 
@@ -36,6 +47,7 @@ function copyTextToClipboard(input, { target = document.body } = {}) {
   element.style.fontSize = '12pt'; // Prevent zooming on iOS
 
   const selection = document.getSelection();
+  if(!selection)return
   const originalRange = selection.rangeCount > 0 && selection.getRangeAt(0);
 
   target.append(element);
@@ -64,3 +76,4 @@ function copyTextToClipboard(input, { target = document.body } = {}) {
 
   return isSuccess;
 }
+// #endif

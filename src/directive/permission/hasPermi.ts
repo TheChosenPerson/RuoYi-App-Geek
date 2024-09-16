@@ -1,11 +1,12 @@
- /**
- * v-hasPermi 操作权限处理
- * Copyright (c) 2019 ruoyi
- */
- 
+/**
+* v-hasPermi 操作权限处理
+* Copyright (c) 2019 ruoyi
+*/
+
 import useUserStore from '@/store/modules/user'
 
-export default {
+import type { Directive } from "vue";
+const vHasPermi: Directive = {
   mounted(el, binding, vnode) {
     const { value } = binding
     const all_permission = "*:*:*";
@@ -26,3 +27,4 @@ export default {
     }
   }
 }
+export default vHasPermi
