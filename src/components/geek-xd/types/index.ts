@@ -6,12 +6,13 @@ export interface Menu {
 export interface Commodity {
     img: string,
     title: string,
-    subTitle: string,
+    subTitle?: string,
     price: number
 }
 
 export interface CommodityOrder extends Commodity {
     shop: string,
     status: string,
-    num: number
+    num: number,
+    label?:string
 }

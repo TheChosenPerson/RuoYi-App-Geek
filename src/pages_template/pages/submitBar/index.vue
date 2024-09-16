@@ -1,3 +1,5 @@
+<script setup>
+</script>
 <template>
 	<view class="navigation">
 		<view class="left">
@@ -21,16 +23,13 @@
 		</view>
 	</view>
 </template>
-
-<script>
-export default {
-	
-};
-</script>
-
 <style lang="scss" scoped>
 .navigation {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 	display: flex;
+	justify-content: space-between;
 	margin-top: 100rpx;
 	border: solid 2rpx #f2f2f2;
 	background-color: #ffffff;
@@ -54,6 +53,7 @@ export default {
 	.right {
 		display: flex;
 		font-size: 28rpx;
+		padding-right: 10rpx;
 		align-items: center;
 		.btn {
 			line-height: 66rpx;

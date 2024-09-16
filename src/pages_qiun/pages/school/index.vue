@@ -69,7 +69,7 @@ export default {
 			tabCur: 0, //标签头下标
 			topBar: 17, //导航高
 			top: '180', //下拉栏位置
-			scrollHeight: "600px", //数据展示体高度
+			scrollHeight: "1400rpx", //数据展示体高度
 			friendTrand,
 			RankData,
 			ProductRateData,

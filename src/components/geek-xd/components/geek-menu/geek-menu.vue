@@ -1,10 +1,3 @@
-<template>
-    <view class="menu" :class="type" :style="menuStyle" @click="$emit('click')">
-        <image :src="icon" :style="imageStyle"></image>
-    </view>
-    <view class="title" :style="titleStype">{{ label }}</view>
-</template>
-  
 <script setup>
 import { computed } from 'vue';
 
@@ -36,14 +29,6 @@ const menuStyle = computed(() => {
         height: `${props.size + 40}rpx`
     }
 })
-
-const imageStyle = computed(() => {
-    return {
-        width: `${props.size + (props.type === 'rect' ? 20 : 0)}rpx`,
-        height: `${props.size + (props.type === 'rect' ? 20 : 0)}rpx`
-    }
-})
-
 const titleStype = computed(() => {
     return {
         width: `${props.size + 40}rpx`,
@@ -51,7 +36,12 @@ const titleStype = computed(() => {
     }
 })
 </script>
-  
+<template>
+    <view class="menu" :class="type" :style="menuStyle" @click="$emit('click')">
+        <image :src="icon" style="width: 100%;height: 100%"></image>
+    </view>
+    <view class="title" :style="titleStype">{{ label }}</view>
+</template>
 <style lang="scss" scoped>
 .menu {
     padding: 20rpx;
@@ -59,7 +49,7 @@ const titleStype = computed(() => {
 
 .circle {
     padding: 20rpx;
-    border-radius: 10000px;
+    border-radius: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &:active {
@@ -68,7 +58,8 @@ const titleStype = computed(() => {
 }
 
 .rect {
-    padding: 0rpx;
+    padding: 15rpx;
+    margin-bottom: -15rpx;
 
     &:active {
         opacity: 0.5;
@@ -79,4 +70,3 @@ const titleStype = computed(() => {
     text-align: center;
 }
 </style>
-  

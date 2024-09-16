@@ -1,15 +1,3 @@
-<template>
-    <view class="card" :class="type" @click="$emit('click')">
-        <image class="img" :src="img"/>
-        <view class="right">
-            <view class="title">{{ title }}</view>
-            <view class="subTitle">{{ subTitle }}</view>
-            <view class="price">￥ {{ price }}</view>
-        </view>
-    </view>
-</template>
-
-
 <script setup>
 const props = defineProps({
     img: {
@@ -30,11 +18,20 @@ const props = defineProps({
     },
     type: {
         type: String,
-        default: 'line'
+        default: 'line' // line, rect
     }
 })
 </script>
-
+<template>
+    <view class="card" :class="type" @click="$emit('click')">
+        <image class="img" :src="img" />
+        <view class="content">
+            <view class="title">{{ title }}</view>
+            <view class="subTitle">{{ subTitle }}</view>
+            <view class="price">￥{{ price }}</view>
+        </view>
+    </view>
+</template>
 <style lang="scss" scoped>
 .card {
     padding: 0;
@@ -50,12 +47,14 @@ const props = defineProps({
         height: 200rpx;
         width: 200rpx;
     }
+}
 
-    .right {
-        position: absolute;
-        top: 20rpx;
-        left: 240rpx;
+.line {
+    display: flex;
+
+    .content {
         height: 200rpx;
+        padding-left: 20rpx;
 
         .title {
             width: 400rpx;
@@ -64,30 +63,27 @@ const props = defineProps({
 
         .subTitle {
             width: 400rpx;
+            height: 90rpx;
             margin-top: 10rpx;
             font-size: 20rpx;
             color: rgb(87, 87, 87);
         }
 
         .price {
-            position: absolute;
             font-size: 40rpx;
             color: red;
-            bottom: 10rpx;
             width: 400rpx;
         }
     }
 }
 
 .rect {
-    
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 500rpx;
     width: 350rpx;
-    padding: 0px;
+    padding: 0;
     margin: 10rpx;
-    position: relative;
     display: inline-block;
 
     .img {
@@ -96,13 +92,15 @@ const props = defineProps({
         width: 350rpx;
     }
 
-    .right {
-        padding: 20rpx;
-        position: absolute;
-        height: 160rpx;
-        width: 350rpx;
-        top: 350rpx;
-        left: 20rpx;
+    .content {
+        padding: 0 20rpx;
+        margin: 0;
+        height: 140rpx;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         .title {
             width: 330rpx;
             font-size: 25rpx;
@@ -110,17 +108,15 @@ const props = defineProps({
 
         .subTitle {
             width: 330rpx;
-            margin-top: 10rpx;
+            height: 60rpx;
             font-size: 20rpx;
             color: rgb(87, 87, 87);
         }
 
         .price {
-            position: absolute;
             font-size: 30rpx;
             color: red;
-            bottom: 10rpx;
-            width: 330rpx;
+            width: 100%;
         }
     }
 }

@@ -8,9 +8,11 @@
             <image class="geek-img" :src="img"></image>
             <view class="geek-label">{{ label }}</view>
             <view class="geek-sum">
-                <view class=".geek-sum-1">￥{{ number.integerPart }}</view>
-                <view class=".geek-sum-2">. {{ number.decimalPart }}</view>
-                <view class=".geek-sum-3">共 {{ num }} 件</view>
+                <view class="geek-price">
+                    <view class="geek-sum-1">￥{{ number.integerPart }}</view>
+                    <view class="geek-sum-2">. {{ number.decimalPart }}</view>
+                </view>
+                <view class="geek-sum-3">共 {{ num }} 件</view>
             </view>
         </view>
         <view class="geek-footer">
@@ -78,18 +80,23 @@ function formatNumber(num, place) {
 </script>
 <style lang="scss" scoped>
 .geek-card {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
-    padding: 28rpx 18rpx 26rpx 16rpx;
+    padding: 20rpx;
+    background-color: white;
     border: 1rpx solid rgb(183, 183, 183);
-    border-radius: 50rpx;
-    height: 400rpx;
+    border-radius: 20rpx;
+    height: 360rpx;
     width: 700rpx;
     margin: 25rpx;
 
     .geek-header {
+        display: flex;
+        justify-content: space-between;
         height: 60rpx;
-        width: 664rpx;
+        width: 100%;
         margin-bottom: 6rpx;
 
         .geek-shop {
@@ -100,20 +107,16 @@ function formatNumber(num, place) {
         .geek-status {
             width: 100rpx;
             text-align: center;
-            position: absolute;
             opacity: 0.5;
-            top: 30rpx;
-            right: 30rpx;
             font-size: 25rpx;
+            text-align: end;
         }
 
     }
 
     .geek-content {
         position: relative;
-
-        margin-bottom: 46rpx;
-        height: 170rpx;
+        height: auto;
         width: 664rpx;
 
         .geek-img {
@@ -140,52 +143,50 @@ function formatNumber(num, place) {
         .geek-sum {
             position: absolute;
             top: 44rpx;
-            right: 0rpx;
+            right: 20rpx;
 
-            width: 126rpx;
+            width: 150rpx;
             height: 84rpx;
 
-            .geek-sum-1 {
-                position: absolute;
-                top: 0;
-                left: 0;
-                font-size: 32rpx;
+            .geek-price {
+                display: flex;
+                justify-content: flex-end;
+                font-weight: bold;
+
+                .geek-sum-1 {
+                    font-size: 32rpx;
+                }
+
+                .geek-sum-2 {
+                    padding-top: 20rpx;
+                    font-size: 20rpx;
+                }
             }
 
-            .geek-sum-2 {
-                position: absolute;
-                top: 30rpx;
-                left: 84rpx;
-                font-size: 20rpx;
-            }
 
             .geek-sum-3 {
-                position: absolute;
-                top: 55rpx;
-                left: 46rpx;
                 font-size: 20rpx;
+                text-align: end;
             }
         }
     }
 
     .geek-footer {
+        display: flex;
+        justify-content: space-between;
         height: 60rpx;
-        width: 664rpx;
+        width: 100%;
         font-size: 25rpx;
 
         .geek-more {
-            width: 100rpx;
             height: 60rpx;
             margin-right: 110rpx;
-
-            padding: 10rpx;
-
             text-align: center;
+            line-height: 60rpx;
             display: inline-block;
         }
 
         .geek-buttonGroup {
-            width: 450rpx;
             height: 60rpx;
             display: inline-block;
 
@@ -195,11 +196,8 @@ function formatNumber(num, place) {
                 height: 60rpx;
                 border-radius: 80rpx;
                 opacity: 0.8;
-
                 padding: 10rpx;
-
                 margin-right: 10rpx;
-
                 text-align: center;
                 display: inline-block;
 
@@ -210,18 +208,12 @@ function formatNumber(num, place) {
                 height: 60rpx;
                 border-radius: 80rpx;
                 opacity: 0.8;
-
                 padding: 10rpx;
-
                 text-align: center;
                 display: inline-block;
-
                 color: #F25E53;
                 border: 1rpx solid #F4DADA;
             }
-
-
-
         }
     }
 

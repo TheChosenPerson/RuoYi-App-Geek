@@ -33,7 +33,7 @@
     @again="modal.msg('再次购买')" @return="modal.msg('退换')" @sell="modal.msg('卖了换钱')"></geek-order>
 
   <uni-section class="mb-10" title="颜色选择器" sub-title="order" type="line"></uni-section>
-  <geek-color-picker ref="gk"></geek-color-picker>
+  <geek-color-picker ref="gk" @confirm="getcolor"></geek-color-picker>
   <button @click="open()">打开颜色选择器</button>
 
 
@@ -51,8 +51,11 @@ function open() {
   //@ts-ignore
   gk.value.open()
 }
+function getcolor(color: { hex: string, rgba: { r: number, g: number, b: number, a: number } }) {
+  console.log(color)
+}
 
-const menus:Array<Menu> = reactive([
+const menus: Array<Menu> = reactive([
   { icon: "/static/images/icon/rocket.png", label: '抢单' },
   { icon: "/static/images/icon/phone.png", label: '回访' },
   { icon: "/static/images/icon/message.png", label: '消息' },
@@ -87,7 +90,7 @@ const orderList: Array<CommodityOrder> = [
     status: '完成',
     img: '/static/images/banner/banner01.jpg',
     title: '商品1',
-    subTitle: '商品1简介',
+    label: '商品1简介',
     price: 100.32,
     num: 10
   },
@@ -96,7 +99,7 @@ const orderList: Array<CommodityOrder> = [
     status: '已取消',
     img: '/static/images/banner/banner03.jpg',
     title: '商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商品3',
-    subTitle: '商品3简介',
+    label: '商品3简介',
     price: 2000.67,
     num: 10
   },
@@ -105,7 +108,7 @@ const orderList: Array<CommodityOrder> = [
     status: '已取消',
     img: '/static/images/banner/banner03.jpg',
     title: '商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商商品3',
-    subTitle: '商品3简介',
+    label: '商品3简介',
     price: 10.67,
     num: 10
   }
