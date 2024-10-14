@@ -46,7 +46,7 @@ RuoYi-Vue 与 RuoYi-App 是基于 SpringBoot2+Vue2 打造的企业级开发框�
 
 # 快速开始
 
-**注意：**node 版本需要 16+
+**注意：** node 版本需要 16+
 
 ## 迁移到Hbuilder（不依赖Hbuilder的项目不需要迁移）
 
@@ -264,6 +264,6 @@ app.use(uviewPlus);
 [uCharts 官网](https://www.ucharts.cn/v2/#/)；
 [RuoYi 官网](http://ruoyi.vip/)；
 
-**联系我们：**
+# 联系我们：
 
 QQ 交流群：744785891
