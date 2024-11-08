@@ -17,7 +17,11 @@ export function createApp() {
   app.use(store)
   app.use(uviewPlus)
   app.use(plugins)
+
+  // #ifndef MP-WEIXIN
+  // 微信小程序中不支持自定义指令
   directive(app)
+  // #endif
 
   // 全局方法挂载
   app.config.globalProperties.useDict = useDict

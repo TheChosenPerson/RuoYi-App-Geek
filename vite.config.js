@@ -14,8 +14,15 @@ export default defineConfig(() => {
         plugins: [
             uni()
         ],
-        exclude:[
+        exclude: [
             /\/README\.md$/,
-        ]
+        ],
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler'
+                }
+            }
+        }
     }
 })
