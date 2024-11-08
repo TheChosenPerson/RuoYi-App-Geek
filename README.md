@@ -46,13 +46,15 @@ RuoYi-Vue 与 RuoYi-App 是基于 SpringBoot2+Vue2 打造的企业级开发框�
 
 # 快速开始
 
-**注意：**node 版本需要 16+
+**注意：** node 版本需要 16+
 
 ## 迁移到Hbuilder（不依赖Hbuilder的项目不需要迁移）
 
 1. src路径作为项目根路径
-2. 将index.html、package.json、vite.config.js、tsconfig.json粘贴到src目录下
+2. 将index.html、package.json、vite.config.js、tsconfig.json、.gitignore粘贴到src目录下
 3. 在src目录下运行npm install
+4. 修改index.html中的./src/main.js为./main.js
+5. 在HBuilderX中运行时注意观察是否使用的是Vue3的编译器（若不是请自行查找方法解决，本人对HbuilderX使用不多）
 
 
 ## 安装
@@ -262,6 +264,6 @@ app.use(uviewPlus);
 [uCharts 官网](https://www.ucharts.cn/v2/#/)；
 [RuoYi 官网](http://ruoyi.vip/)；
 
-**联系我们：**
+# 联系我们：
 
 QQ 交流群：744785891
