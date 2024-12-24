@@ -1,3 +1,62 @@
+<script setup>
+import { ref } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
+
+const show = ref(false)
+const password = ref('')
+
+onLoad(() => {
+})
+
+const onChange = (val) => {
+	if (password.value.length < 6) {
+		password.value += val
+	}
+
+	if (password.value.length >= 6) {
+		pay()
+	}
+}
+
+const onBackspace = () => {
+	if (password.value.length > 0) {
+		password.value = password.value.substring(0, password.value.length - 1)
+	}
+}
+
+const pay = () => {
+	uni.showLoading({
+		title: '支付中'
+	})
+
+	setTimeout(() => {
+		uni.hideLoading()
+		show.value = false
+		uni.showToast({
+			icon: 'success',
+			title: '支付成功'
+		})
+	}, 2000)
+}
+
+const showPop = (flag = true) => {
+	password.value = ''
+	show.value = flag
+	// #ifdef H5 || WEB
+	setTimeout(() => {
+		const btn = document.querySelector('.u-keyboard__button-wrapper__button.u-keyboard__button-wrapper__button--gray')
+		if (btn) {
+			console.log(btn)
+			btn.onclick = onBackspace
+		}
+	}, 500)
+	// #endif
+}
+
+const finish = () => {
+	console.log(11111)
+}
+</script>
 <template>
 	<view>
 		<view class="u-padding-40">
@@ -25,65 +84,6 @@
 		</u-keyboard>
 	</view>
 </template>
-
-<script>
-export default {
-	data() {
-		return {
-			show: false,
-			password: ''
-		}
-	},
-	onLoad() {
-	},
-	methods: {
-		onChange(val) {
-			if (this.password.length < 6) {
-				this.password += val;
-			}
-
-			if (this.password.length >= 6) {
-				this.pay();
-			}
-		},
-		onBackspace(e) {
-			if (this.password.length > 0) {
-				this.password = this.password.substring(0, this.password.length - 1);
-			}
-		},
-		pay() {
-			uni.showLoading({
-				title: '支付中'
-			})
-
-			setTimeout(() => {
-				uni.hideLoading();
-				this.show = false;
-				uni.showToast({
-					icon: 'success',
-					title: '支付成功'
-				})
-			}, 2000);
-		},
-		showPop(flag = true) {
-			this.password = '';
-			this.show = flag;
-			// #ifdef H5 || WEB
-			setTimeout(() => {
-				const btn = document.querySelector('.u-keyboard__button-wrapper__button.u-keyboard__button-wrapper__button--gray');
-				if (!!btn) {
-					console.log(btn);
-					btn.onclick = this.onBackspace
-				}
-			}, 500)
-			// #endif
-		},
-		finish() {
-			console.log(11111)
-		}
-	}
-}
-</script>
 
 <style lang="scss">
 .money {

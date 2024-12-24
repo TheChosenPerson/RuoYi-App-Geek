@@ -37,10 +37,12 @@ const titleStype = computed(() => {
 })
 </script>
 <template>
-    <view class="menu" :class="type" :style="menuStyle" @click="$emit('click')">
-        <image :src="icon" style="width: 100%;height: 100%"></image>
+    <view>
+        <view class="menu" :class="type" :style="menuStyle" @click="$emit('click')">
+            <image :src="icon" style="width: 100%;height: 100%"></image>
+        </view>
+        <view class="title" :style="titleStype">{{ label }}</view>
     </view>
-    <view class="title" :style="titleStype">{{ label }}</view>
 </template>
 <style lang="scss" scoped>
 .menu {

@@ -1,6 +1,7 @@
 <template>
-	<u-popup :show="modelValue" mode="bottom" :popup="false" :mask="true" :closeable="true" :safe-area-inset-bottom="true"
-		close-icon-color="#ffffff" :z-index="uZIndex" :maskCloseAble="maskCloseAble" @close="close">
+	<u-popup :show="modelValue" mode="bottom" :popup="false" :mask="true" :closeable="true"
+		:safe-area-inset-bottom="true" close-icon-color="#ffffff" :z-index="uZIndex" :maskCloseAble="maskCloseAble"
+		@close="close">
 		<u-tabs v-if="modelValue" :list="genTabsList" :scrollable="true" :current="tabsIndex" @change="tabsChange"
 			ref="tabs" />
 		<view class="area-box">
@@ -9,8 +10,8 @@
 					<view class="u-padding-10 u-bg-gray" style="height: 100%;">
 						<scroll-view :scroll-y="true" style="height: 100%">
 							<u-cell-group>
-								<u-cell v-for="(item, index) in provinces" :title="item.label" :arrow="false" :index="index"
-									:key="index" @click="provinceChange(index)">
+								<u-cell v-for="(item, index) in provinces" :title="item.label" :arrow="false"
+									:index="index" :key="index" @click="provinceChange(index)">
 									<template v-slot:right-icon>
 										<u-icon v-if="isChooseP && province === index" size="17"
 											name="checkbox-mark"></u-icon>
@@ -27,7 +28,8 @@
 								<u-cell v-for="(item, index) in citys" :title="item.label" :arrow="false" :index="index"
 									:key="index" @click="cityChange(index)">
 									<template v-slot:right-icon>
-										<u-icon v-if="isChooseC && city === index" size="17" name="checkbox-mark"></u-icon>
+										<u-icon v-if="isChooseC && city === index" size="17"
+											name="checkbox-mark"></u-icon>
 									</template>
 								</u-cell>
 							</u-cell-group>
@@ -41,7 +43,8 @@
 								<u-cell v-for="(item, index) in areas" :title="item.label" :arrow="false" :index="index"
 									:key="index" @click="areaChange(index)">
 									<template v-slot:right-icon>
-										<u-icon v-if="isChooseA && area === index" size="17" name="checkbox-mark"></u-icon>
+										<u-icon v-if="isChooseA && area === index" size="17"
+											name="checkbox-mark"></u-icon>
 									</template>
 								</u-cell>
 							</u-cell-group>

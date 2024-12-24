@@ -1,44 +1,55 @@
 <template>
-  <uni-section class="mb-10" title="数值板" sub-title="statistic" type="line"></uni-section>
-  <u-row gutter="0">
-    <u-col span="6">
-      <geek-statistic label="订单数量(个)" labelColor="#1f1f1f" :number="0" numberColor="red" />
-    </u-col>
-    <u-col span="6">
-      <geek-statistic label="交易金额(元)" labelColor="#1f1f1f" :number="0" numberColor="red" />
-    </u-col>
-  </u-row>
+  <view style="background-color: #f6f6f6;">
+    <uni-section class="mb-10" title="数值板" sub-title="statistic" type="line"></uni-section>
+    <u-row gutter="0">
+      <u-col span="6">
+        <geek-statistic label="订单数量(个)" labelColor="#1f1f1f" :number="0" numberColor="red" />
+      </u-col>
+      <u-col span="6">
+        <geek-statistic label="交易金额(元)" labelColor="#1f1f1f" :number="0" numberColor="red" />
+      </u-col>
+    </u-row>
 
-  <uni-section class="mb-10" title="菜单" sub-title="menu" type="line"></uni-section>
-  <u-row>
-    <u-col :span="2.1" :offset="0.3" v-for="menu, index in menus" :key="index">
-      <geek-menu v-bind=menu :size="60" @click="modal.msg(menu.label)" type="circle" />
-    </u-col>
-  </u-row>
-  <u-row>
-    <u-col :span="2.1" :offset="0.3" v-for="menu, index in menus" :key="index">
-      <geek-menu :icon="menu.icon" :label="menu.label" :size="60" @click="modal.msg(menu.label)" type="rect" />
-    </u-col>
-  </u-row>
+    <uni-section class="mb-10" title="菜单" sub-title="menu" type="line"></uni-section>
+    <view style="width: 100%; display: flex;justify-content:space-evenly;align-items: center;">
+      <geek-menu v-for="menu, index in menus" :key="index" v-bind=menu :size="60" @click="modal.msg(menu.label)"
+        type="circle" />
+    </view>
+    <view style="width: 100%; display: flex;justify-content:space-evenly;align-items: center;">
+      <geek-menu v-for="menu, index in menus" :key="index" :icon="menu.icon" :label="menu.label" :size="60"
+        @click="modal.msg(menu.label)" type="rect" />
+    </view>
 
-  <uni-section class="mb-10" title="商品列表" sub-title="commodity" type="line"></uni-section>
-  <geek-commodity v-for="item, index in commodityList" :key="index" v-bind="item" type="line"
-    @click="modal.msg(item.title)" />
-  <geek-commodity v-for="item, index in commodityList" :key="index" v-bind="item" type="rect"
-    @click="modal.msg(item.title)" />
+    <uni-section class="mb-10" title="商品列表" sub-title="commodity" type="line"></uni-section>
+    <view style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+      <geek-commodity v-for="item, index in commodityList" :key="index" v-bind="item" type="line"
+        @click="modal.msg(item.title)" />
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view>
+        <geek-commodity v-for="item, index in commodityList.slice(0, 2)" :key="index" v-bind="item" type="rect"
+          @click="modal.msg(item.title)" />
+      </view>
+      <view>
+        <geek-commodity v-for="item, index in commodityList.slice(1, 3)" :key="index" v-bind="item" type="rect"
+          @click="modal.msg(item.title)" />
+      </view>
+    </view>
+
+    <uni-section class="mb-10" title="订单列表" sub-title="order" type="line"></uni-section>
+    <geek-order v-for="item, index in orderList" :key="index" v-bind="item" @more="modal.msg('更多')"
+      @again="modal.msg('再次购买')" @return="modal.msg('退换')" @sell="modal.msg('卖了换钱')"></geek-order>
+
+    <uni-section class="mb-10" title="颜色选择器" sub-title="order" type="line"></uni-section>
+    <geek-color-picker ref="gk" @confirm="getcolor"></geek-color-picker>
+    <button @click="open()">打开颜色选择器</button>
 
 
-  <uni-section class="mb-10" title="订单列表" sub-title="order" type="line"></uni-section>
-  <geek-order v-for="item, index in orderList" :key="index" v-bind="item" @more="modal.msg('更多')"
-    @again="modal.msg('再次购买')" @return="modal.msg('退换')" @sell="modal.msg('卖了换钱')"></geek-order>
-
-  <uni-section class="mb-10" title="颜色选择器" sub-title="order" type="line"></uni-section>
-  <geek-color-picker ref="gk" @confirm="getcolor"></geek-color-picker>
-  <button @click="open()">打开颜色选择器</button>
-
-
-  <uni-section class="mb-10" title="二维码" sub-title="order" type="line"></uni-section>
-  <geek-qrcode cid="qrcode2" ref="qrcode2" val="二维码" :loadMake="true" />
+    <uni-section class="mb-10" title="二维码" sub-title="order" type="line"></uni-section>
+    <view style="display: flex;align-items: center;justify-content: center;">
+      <geek-qrcode cid="qrcode2" ref="qrcode2" val="二维码" :loadMake="true" />
+    </view>
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -73,7 +84,7 @@ const commodityList: Array<Commodity> = reactive([
   {
     img: '/static/images/banner/banner02.jpg',
     title: '商品2',
-    subTitle: '商品2简介',
+    subTitle: '商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介商品2简介',
     price: 300,
   },
   {

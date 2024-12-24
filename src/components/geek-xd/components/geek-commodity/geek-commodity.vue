@@ -36,8 +36,7 @@ const props = defineProps({
 .card {
     padding: 0;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 240rpx;
+    background-color: #ffffff;
     width: 700rpx;
     padding: 20rpx;
     margin: 10rpx;
@@ -67,6 +66,12 @@ const props = defineProps({
             margin-top: 10rpx;
             font-size: 20rpx;
             color: rgb(87, 87, 87);
+            line-height: 30rpx;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .price {
@@ -80,7 +85,6 @@ const props = defineProps({
 .rect {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 500rpx;
     width: 350rpx;
     padding: 0;
     margin: 10rpx;
@@ -95,7 +99,6 @@ const props = defineProps({
     .content {
         padding: 0 20rpx;
         margin: 0;
-        height: 140rpx;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -108,7 +111,6 @@ const props = defineProps({
 
         .subTitle {
             width: 330rpx;
-            height: 60rpx;
             font-size: 20rpx;
             color: rgb(87, 87, 87);
         }

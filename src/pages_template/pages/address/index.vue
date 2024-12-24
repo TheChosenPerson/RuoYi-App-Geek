@@ -1,3 +1,48 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import tab from '@/plugins/tab';
+
+const siteList = ref([]);
+
+onMounted(() => {
+	getData();
+});
+
+function getData() {
+	siteList.value = [
+		{
+			id: 1,
+			name: '游X',
+			phone: '183****5523',
+			tag: [
+				{ tagText: '默认' },
+				{ tagText: '家' }
+			],
+			site: '广东省深圳市宝安区 自由路66号'
+		},
+		{
+			id: 2,
+			name: '李XX',
+			phone: '183****5555',
+			tag: [
+				{ tagText: '公司' }
+			],
+			site: '广东省深圳市宝安区 翻身路xx号'
+		},
+		{
+			id: 3,
+			name: '王YY',
+			phone: '153****5555',
+			tag: [],
+			site: '广东省深圳市宝安区 平安路13号'
+		}
+	];
+}
+
+function toAddSite() {
+	tab.navigateTo('/pages_template/pages/address/addSite');
+}
+</script>
 <template>
 	<view>
 		<view class="item" v-for="(res, index) in siteList" :key="res.id">
@@ -5,7 +50,8 @@
 				<view class="name">{{ res.name }}</view>
 				<view class="phone">{{ res.phone }}</view>
 				<view class="tag">
-					<text v-for="(item, index) in res.tag" :key="index" :class="{red:item.tagText=='默认'}">{{ item.tagText }}</text>
+					<text v-for="(item, index) in res.tag" :key="index" :class="{ red: item.tagText == '默认' }">{{
+						item.tagText }}</text>
 				</view>
 			</view>
 			<view class="bottom">
@@ -20,77 +66,24 @@
 		</view>
 	</view>
 </template>
-
-<script>
-export default {
-	data() {
-		return {
-			siteList: []
-		};
-	},
-	onLoad() {
-		this.getData();
-	},
-	methods: {
-		getData() {
-			this.siteList = [
-				{
-					id: 1,
-					name: '游X',
-					phone: '183****5523',
-					tag: [
-						{
-							tagText: '默认'
-						},
-						{
-							tagText: '家'
-						}
-					],
-					site: '广东省深圳市宝安区 自由路66号'
-				},
-				{
-					id: 2,
-					name: '李XX',
-					phone: '183****5555',
-					tag: [
-						{
-							tagText: '公司'
-						}
-					],
-					site: '广东省深圳市宝安区 翻身路xx号'
-				},
-				{
-					id: 3,
-					name: '王YY',
-					phone: '153****5555',
-					tag: [],
-					site: '广东省深圳市宝安区 平安路13号'
-				}
-			];
-		},
-		toAddSite(){
-			uni.navigateTo({
-			    url: '/pages_template/pages/address/addSite'
-			});
-		}
-	}
-};
-</script>
-
 <style lang="scss" scoped>
 .item {
 	padding: 40rpx 20rpx;
+
 	.top {
 		display: flex;
 		font-weight: bold;
 		font-size: 34rpx;
+
 		.phone {
 			margin-left: 60rpx;
 		}
+
 		.tag {
 			display: flex;
 			font-weight: normal;
 			align-items: center;
+
 			text {
 				display: block;
 				width: 60rpx;
@@ -101,13 +94,15 @@ export default {
 				border-radius: 6rpx;
 				text-align: center;
 				margin-left: 30rpx;
-				background-color:rgb(49, 145, 253);
+				background-color: rgb(49, 145, 253);
 			}
-			.red{
-				background-color:red
+
+			.red {
+				background-color: red
 			}
 		}
 	}
+
 	.bottom {
 		display: flex;
 		margin-top: 20rpx;
@@ -116,6 +111,7 @@ export default {
 		color: #999999;
 	}
 }
+
 .addSite {
 	display: flex;
 	justify-content: space-around;
@@ -127,11 +123,13 @@ export default {
 	background-color: red;
 	border-radius: 60rpx;
 	font-size: 30rpx;
-	.add{
+
+	.add {
 		display: flex;
 		align-items: center;
 		color: #ffffff;
-		.icon{
+
+		.icon {
 			margin-right: 10rpx;
 		}
 	}

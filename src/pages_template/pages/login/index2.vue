@@ -11,7 +11,8 @@
 				<view class="login-form-content">
 					<view class="input-item flex align-center">
 						<view class="iconfont icon-user icon"></view>
-						<input v-model="loginForm.username" class="input" type="text" placeholder="请输入账号" maxlength="30" />
+						<input v-model="loginForm.username" class="input" type="text" placeholder="请输入账号"
+							maxlength="30" />
 					</view>
 					<view class="input-item flex align-center">
 						<view class="iconfont icon-password icon"></view>
@@ -20,7 +21,8 @@
 					</view>
 					<view class="input-item flex align-center" style="width: 60%;margin: 0px;" v-if="captchaEnabled">
 						<view class="iconfont icon-code icon"></view>
-						<input v-model="loginForm.code" type="number" class="input" placeholder="请输入验证码" maxlength="4" />
+						<input v-model="loginForm.code" type="number" class="input" placeholder="请输入验证码"
+							maxlength="4" />
 						<view class="login-code">
 							<image :src="codeUrl" @click="getCode" class="login-code-img"></image>
 						</view>
@@ -37,8 +39,8 @@
 		<view v-else>
 			<view class="container">
 				<view class="cover slide-top1" :style="'animation-play-state:' + play[2]">
-					<view class="masking slide-top" :class="[collapsedClass, { animating: isAnimating }]" ref="fixedView"
-						:style="'animation-play-state:' + play[0]">
+					<view class="masking slide-top" :class="[collapsedClass, { animating: isAnimating }]"
+						ref="fixedViewRef" :style="'animation-play-state:' + play[0]">
 						<uni-row>
 							<text class="text-first">欢迎使用</text>
 							<text class="text-second">校园访客</text>
@@ -69,111 +71,104 @@
 		</view>
 	</view>
 </template>
-  
-<script>
+
+<script setup>
+import { ref, reactive, computed, onMounted } from 'vue'
 import useUserStore from '@/store/modules/user'
-export default {
-	data() {
-		return {
-			src: "staticimagessoutheast.jpg",
-			isActive: false,
-			isFixedViewVisible: true,
-			animationType: "up", // 可选值：right 或 up
-			isAnimating: false, // 控制动画执行状态
-			play: ["paused", "paused", "paused"],
-			page: "index",
+import tab from '@/plugins/tab'
+import modal from '@/plugins/modal'
 
-			codeUrl: "",
-			captchaEnabled: true,
-			loginForm: {
-				username: "admin",
-				password: "admin123",
-				code: "",
-				uuid: ''
-			}
-		}
-	},
-	computed: {
-		collapsedClass() {
-			return this.isFixedViewVisible ? "" : `collapsed-${this.animationType}`;
-		},
-	},
-	created() {
-		this.getCode()
-	},
-	methods: {
-		login() {
-			this.play[2] = "running"
-			setTimeout(() => { this.page = 'login' }, 1000)
+const src = ref("staticimagessoutheast.jpg")
+const isActive = ref(false)
+const isFixedViewVisible = ref(true)
+const animationType = ref("up") // 可选值：right 或 up
+const isAnimating = ref(false) // 控制动画执行状态
+const play = ref(["paused", "paused", "paused"])
+const page = ref("index")
 
-		},
-		back() {
-			this.page = 'index'
-			this.play[0] = "paused"
-			this.play[1] = "paused"
-			this.play[2] = "paused"
-		},
-		startplay() {
-			this.play[1] = "running"
-			this.isActive = true;
-			setTimeout(() => { this.isActive = false; }, 300);
-			if (this.isAnimating) { return; }
-			this.isAnimating = false; // 开始动画执行
-			this.play[0] = "running"
-			this.isFixedViewVisible = !this.isFixedViewVisible;
-			let fixedView = this.$refs.fixedView;
-			if (fixedView)
-				fixedView.addEventListener('transitionend', () => { this.isAnimating = false; }, { once: true });
+const codeUrl = ref("")
+const captchaEnabled = ref(true)
+const loginForm = reactive({
+	username: "admin",
+	password: "admin123",
+	code: "",
+	uuid: ''
+})
 
-			setTimeout(() => { uni.navigateBack({ delta: 1 }); }, 1000)
-		},
+const collapsedClass = computed(() => {
+	return isFixedViewVisible.value ? "" : `collapsed-${animationType.value}`;
+})
 
+onMounted(() => {
+	getCode()
+})
 
+const login = () => {
+	play.value[2] = "running"
+	setTimeout(() => { page.value = 'login' }, 1000)
+}
 
-		// 获取图形验证码
-		getCode() {
-			let res = {}
-			this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled
-			if (this.captchaEnabled) {
-				this.codeUrl = 'data:image/gif;base64,' + res.img
-				this.loginForm.uuid = res.uuid
-			}
-		},
-		// 登录方法
-		async handleLogin() {
-			if (this.loginForm.username === "") {
-				this.$modal.msgError("请输入您的账号")
-			} else if (this.loginForm.password === "") {
-				this.$modal.msgError("请输入您的密码")
-			} else if (this.loginForm.code === "" && this.captchaEnabled) {
-				this.$modal.msgError("请输入验证码")
-			} else {
-				this.$modal.loading("登录中，请耐心等待...")
-				this.pwdLogin()
-			}
-		},
-		// 密码登录
-		async pwdLogin() {
-			useUserStore().login(this.loginForm).then(() => {
-				this.$modal.closeLoading()
-				this.loginSuccess()
-			}).catch(() => {
-				if (this.captchaEnabled) {
-					this.getCode()
-				}
-			})
-		},
-		// 登录成功后，处理函数
-		loginSuccess(result) {
-			// 设置用户信息
-			useUserStore().getInfo().then(res => {
-				this.$tab.reLaunch('/pages/index')
-			})
-		}
+const back = () => {
+	page.value = 'index'
+	play.value[0] = "paused"
+	play.value[1] = "paused"
+	play.value[2] = "paused"
+}
+const startplay = () => {
+	play.value[1] = "running"
+	isActive.value = true;
+	setTimeout(() => { isActive.value = false; }, 300);
+	if (isAnimating.value) { return; }
+	isAnimating.value = false; // 开始动画执行
+	play.value[0] = "running"
+	isFixedViewVisible.value = !isFixedViewVisible.value;
+	setTimeout(() => { uni.navigateBack({ delta: 1 }); }, 1000)
+}
+
+// 获取图形验证码
+const getCode = () => {
+	let res = {}
+	captchaEnabled.value = res.captchaEnabled === undefined ? true : res.captchaEnabled
+	if (captchaEnabled.value) {
+		codeUrl.value = 'data:image/gif;base64,' + res.img
+		loginForm.uuid = res.uuid
 	}
 }
+
+// 登录方法
+const handleLogin = async () => {
+	if (loginForm.username === "") {
+		modal.msgError("请输入您的账号")
+	} else if (loginForm.password === "") {
+		modal.msgError("请输入您的密码")
+	} else if (loginForm.code === "" && captchaEnabled.value) {
+		modal.msgError("请输入验证码")
+	} else {
+		modal.loading("登录中，请耐心等待...")
+		pwdLogin()
+	}
+}
+
+// 密码登录
+const pwdLogin = async () => {
+	useUserStore().login(loginForm).then(() => {
+		modal.closeLoading()
+		loginSuccess()
+	}).catch(() => {
+		if (captchaEnabled.value) {
+			getCode()
+		}
+	})
+}
+
+// 登录成功后，处理函数
+const loginSuccess = (result) => {
+	// 设置用户信息
+	useUserStore().getInfo().then(res => {
+		tab.reLaunch('/pages/index')
+	})
+}
 </script>
-  
 <style lang="scss">
 page {
 	background-color: #ffffff;
@@ -665,4 +660,3 @@ page {
 	}
 }
 </style>
-  

@@ -1,6 +1,16 @@
+<script setup>
+import tab from '@/plugins/tab';
+import { ref } from 'vue';
+
+const pic = ref('https://uviewui.com/common/logo.png');
+const show = ref(true);
+
+const navigateBackHandler = () => { tab.navigateBack(); }
+</script>
+
 <template>
 	<view>
-		<u-navbar :fixed="false"  title="　"  @leftClick="navigateBack">
+		<u-navbar :fixed="false" title="　" @leftClick="navigateBackHandler">
 			<view class="u-flex u-row-right" style="width: 100%;">
 				<view class="camera u-flex u-row-center">
 					<u-icon name="camera-fill" color="#000000" size="48"></u-icon>
@@ -46,27 +56,8 @@
 	</view>
 </template>
 
-<script>
 
-export default {
-	data() {
-		return {
-			pic: 'https://uviewui.com/common/logo.png',
-			show: true
-		}
-	},
-	onLoad() {
-
-	},
-	methods: {
-		navigateBack() {
-			uni.navigateBack({delta: 1 });
-		}
-	}
-}
-</script>
-
-<style lang="scss">
+<style lang="scss" scoped>
 page {
 	background-color: #ededed;
 }

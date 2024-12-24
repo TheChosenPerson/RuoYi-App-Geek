@@ -1,3 +1,5 @@
+<script setup>
+</script>
 <template>
 	<view class="u-wrap">
 		<view class="meituan">
@@ -57,18 +59,18 @@
 		<view class="taobao">
 			<view class="title">
 				<view class="left">
-					<image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image>
+					<image class="buddha"
+						src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg"
+						mode="aspectFill"></image>
 					<view class="store">袜子精保护协会</view>
 				</view>
 				<view class="entrance">进店</view>
 			</view>
 			<view class="ticket">
 				<view class="left">
-					<image
-						class="picture"
+					<image class="picture"
 						src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1578059523488&di=5f592ac19c1b983005d3e85add469756&imgtype=0&src=http%3A%2F%2Fimg010.hc360.cn%2Fg7%2FM00%2F2D%2FB9%2FwKhQs1QfUo6EdeM-AAAAALwk1hM072.jpg"
-						mode="widthFix"
-					></image>
+						mode="widthFix"></image>
 					<view class="introduce">
 						<view class="top">
 							￥
@@ -82,23 +84,18 @@
 				<view class="right">
 					<view class="use immediate-use" :round="true">去使用</view>
 				</view>
-				
+
 			</view>
 		</view>
 	</view>
 </template>
-
-<script>
-export default {
-	
-};
-</script>
 
 <style lang="scss" scoped>
 page {
 	height: 100%;
 	background-color: rgb(244, 244, 244);
 }
+
 .u-wrap {
 	padding: 24rpx;
 }
@@ -110,23 +107,28 @@ page {
 	// border: 10rpx;
 	color: $u-warning;
 	font-size: 28rpx;
+
 	.content {
 		display: flex;
 		align-items: center;
 		padding: 80rpx 20rpx;
 		border: 10rpx;
 		background-color: #fff5f4;
+
 		.left {
 			.sum {
 				font-size: 32rpx;
+
 				.num {
 					font-size: 60rpx;
 					font-weight: bold;
 				}
 			}
 		}
+
 		.centre {
 			margin-left: 40rpx;
+
 			.title {
 				font-size: 32rpx;
 				font-weight: bold;
@@ -134,21 +136,24 @@ page {
 				margin-bottom: 20rpx;
 			}
 		}
+
 		.right {
 			margin-left: 30rpx;
+
 			.immediate-use {
 				padding: 0 20rpx;
 				height: 50rpx;
 				border-radius: 25rpx;
 				line-height: 50rpx;
-				background-color: $u-warning!important;
-				color: #ffffff!important;
+				background-color: $u-warning !important;
+				color: #ffffff !important;
 				font-size: 24rpx;
 				border: none;
 				word-break: keep-all;
 			}
 		}
 	}
+
 	.tips {
 		padding: 0 20rpx;
 		border: 10rpx;
@@ -159,6 +164,7 @@ page {
 		justify-content: space-between;
 		line-height: 60rpx;
 		font-size: 24rpx;
+
 		.circle-left,
 		.circle-right {
 			position: absolute;
@@ -178,10 +184,12 @@ page {
 			left: 0;
 			top: -18rpx;
 		}
+
 		.rule {
 			font-size: 24rpx;
 			display: flex;
 			align-items: center;
+
 			text {
 				margin-right: 10rpx;
 				flex: 1;
@@ -196,33 +204,41 @@ page {
 	height: auto;
 	background-color: #ffffff;
 	display: flex;
+
 	.left {
 		padding: 0 30rpx;
 		background-color: rgb(95, 148, 224); //rgb(94, 152, 225);
 		text-align: center;
 		font-size: 28rpx;
 		color: #ffffff;
+
 		.sum {
 			margin-top: 50rpx;
 			font-weight: bold;
 			font-size: 32rpx;
+
 			.num {
 				font-size: 80rpx;
 			}
 		}
+
 		.type {
 			margin-bottom: 50rpx;
 			font-size: 24rpx;
 		}
 	}
+
 	.right {
 		padding: 20rpx 20rpx 0;
 		font-size: 28rpx;
+
 		.top {
 			border-bottom: 2rpx dashed $u-border-color;
+
 			.title {
 				margin-right: 60rpx;
 				line-height: 40rpx;
+
 				.tag {
 					padding: 4rpx 20rpx;
 					background-color: rgb(73, 154, 201);
@@ -233,16 +249,19 @@ page {
 					margin-right: 10rpx;
 				}
 			}
+
 			.bottom {
 				display: flex;
 				margin-top: 20rpx;
 				align-items: center;
 				justify-content: space-between;
 				margin-bottom: 10rpx;
+
 				.date {
 					font-size: 20rpx;
 					flex: 1;
 				}
+
 				.immediate-use {
 					height: auto;
 					padding: 0 20rpx;
@@ -254,6 +273,7 @@ page {
 				}
 			}
 		}
+
 		.tips {
 			width: 100%;
 			line-height: 50rpx;
@@ -261,13 +281,16 @@ page {
 			align-items: center;
 			justify-content: space-between;
 			font-size: 24rpx;
+
 			.transpond {
 				margin-right: 10rpx;
 			}
+
 			.explain {
 				display: flex;
 				align-items: center;
 			}
+
 			.particulars {
 				width: 30rpx;
 				height: 30rpx;
@@ -287,25 +310,30 @@ page {
 	background-color: white;
 	padding: 30rpx 20rpx 20rpx;
 	border-radius: 20rpx;
+
 	.title {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		margin-bottom: 20rpx;
 		font-size: 30rpx;
+
 		.left {
 			display: flex;
 			align-items: center;
 		}
+
 		.store {
 			font-weight: 500;
 		}
+
 		.buddha {
 			width: 70rpx;
 			height: 70rpx;
 			border-radius: 10rpx;
 			margin-right: 10rpx;
 		}
+
 		.entrance {
 			color: $u-info;
 			border: solid 2rpx $u-info;
@@ -315,8 +343,10 @@ page {
 			border-radius: 15px;
 		}
 	}
+
 	.ticket {
 		display: flex;
+
 		.left {
 			width: 70%;
 			padding: 30rpx 20rpx;
@@ -324,33 +354,40 @@ page {
 			border-radius: 20rpx;
 			border-right: dashed 2rpx rgb(224, 215, 211);
 			display: flex;
+
 			.picture {
 				width: 172rpx;
 				height: 172rpx;
 				border-radius: 20rpx;
 			}
+
 			.introduce {
 				margin-left: 10rpx;
-				.top{
-					color:$u-warning;
+
+				.top {
+					color: $u-warning;
 					font-size: 28rpx;
-					.big{
+
+					.big {
 						font-size: 60rpx;
 						font-weight: bold;
 						margin-right: 10rpx;
 					}
 				}
-				.type{
+
+				.type {
 					font-size: 28rpx;
 					color: $u-info-dark;
 				}
-				.date{
+
+				.date {
 					margin-top: 10rpx;
 					font-size: 20rpx;
 					color: $u-info-dark;
 				}
 			}
 		}
+
 		.right {
 			width: 30%;
 			padding: 40rpx 20rpx;
@@ -358,13 +395,14 @@ page {
 			border-radius: 20rpx;
 			display: flex;
 			align-items: center;
-			.use{
+
+			.use {
 				height: auto;
 				padding: 0 20rpx;
 				font-size: 24rpx;
 				border-radius: 40rpx;
-				color: #ffffff!important;
-				background-color: $u-warning!important;
+				color: #ffffff !important;
+				background-color: $u-warning !important;
 				line-height: 40rpx;
 				color: rgb(117, 142, 165);
 				margin-left: 20rpx;

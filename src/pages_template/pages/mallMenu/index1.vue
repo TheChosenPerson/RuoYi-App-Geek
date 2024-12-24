@@ -1,3 +1,53 @@
+<script setup>
+import { ref, reactive } from 'vue';
+import classifyData from "@/pages_template/common/classify.data.js";
+
+const tabbar = reactive(classifyData);
+const scrollTop = ref(0); // tab标题的滚动条位置
+const current = ref(0); // 预设当前项的值
+const menuHeight = ref(0); // 左边菜单的高度
+const menuItemHeight = ref(0); // 左边菜单item的高度
+
+// 点击左边的栏目切换
+const swichMenu = async (index) => {
+	if (index === current.value) return;
+	current.value = index;
+	// 如果为0，意味着尚未初始化
+	if (menuHeight.value === 0 || menuItemHeight.value === 0) {
+		await getElRect('menu-scroll-view', 'menuHeight');
+		await getElRect('u-tab-item', 'menuItemHeight');
+	}
+	// 将菜单菜单活动item垂直居中
+	scrollTop.value = index * menuItemHeight.value + menuItemHeight.value / 2 - menuHeight.value / 2;
+};
+
+// 获取一个目标元素的高度
+const getElRect = (elClass, dataVal) => {
+	return new Promise((resolve, reject) => {
+		const query = uni.createSelectorQuery().in(this);
+		query.select('.' + elClass).fields({ size: true }, res => {
+			// 如果节点尚未生成，res值为null，循环调用执行
+			if (!res) {
+				setTimeout(() => {
+					getElRect(elClass, dataVal);
+				}, 10);
+				return;
+			}
+			if (dataVal === 'menuHeight') {
+				menuHeight.value = res.height;
+			} else if (dataVal === 'menuItemHeight') {
+				menuItemHeight.value = res.height;
+			}
+			resolve();
+		}).exec();
+	});
+};
+
+const clickMenu = (menu) => {
+	console.log(menu);
+};
+</script>
+
 <template>
 	<view class="u-wrap">
 		<view class="u-search-box">
@@ -35,54 +85,6 @@
 		</view>
 	</view>
 </template>
-
-<script>
-import classifyData from "@/pages_template/common/classify.data.js";
-export default {
-	data() {
-		return {
-			tabbar: classifyData,
-			scrollTop: 0, //tab标题的滚动条位置
-			current: 0, // 预设当前项的值
-			menuHeight: 0, // 左边菜单的高度
-			menuItemHeight: 0, // 左边菜单item的高度
-		}
-	},
-	methods: {
-		// 点击左边的栏目切换
-		async swichMenu(index) {
-			if (index == this.current) return;
-			this.current = index;
-			// 如果为0，意味着尚未初始化
-			if (this.menuHeight == 0 || this.menuItemHeight == 0) {
-				await this.getElRect('menu-scroll-view', 'menuHeight');
-				await this.getElRect('u-tab-item', 'menuItemHeight');
-			}
-			// 将菜单菜单活动item垂直居中
-			this.scrollTop = index * this.menuItemHeight + this.menuItemHeight / 2 - this.menuHeight / 2;
-		},
-		// 获取一个目标元素的高度
-		getElRect(elClass, dataVal) {
-			new Promise((resolve, reject) => {
-				const query = uni.createSelectorQuery().in(this);
-				query.select('.' + elClass).fields({ size: true }, res => {
-					// 如果节点尚未生成，res值为null，循环调用执行
-					if (!res) {
-						setTimeout(() => {
-							this.getElRect(elClass);
-						}, 10);
-						return;
-					}
-					this[dataVal] = res.height;
-				}).exec();
-			})
-		},
-		clickMenu(menu) {
-			console.log(menu);
-		}
-	}
-}
-</script>
 
 <style lang="scss" scoped>
 .u-wrap {

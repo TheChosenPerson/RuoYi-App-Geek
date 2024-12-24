@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+const show = ref(false);
+
+const setDefault = () => { };
+
+const showRegionPicker = () => {
+	show.value = true;
+};
+</script>
 <template>
 	<view class="wrap">
 		<view class="top">
@@ -40,56 +50,48 @@
 					<view class="set">设置默认地址</view>
 					<view class="tips">提醒：每次下单会默认推荐该地址</view>
 				</view>
-				<view class="right"><switch color="red" @change="setDefault" /></view>
+				<view class="right">
+					<switch color="red" @change="setDefault" />
+				</view>
 			</view>
 		</view>
 		<u-picker mode="region" ref="uPicker" v-model="show" />
 	</view>
 </template>
 
-<script>
-export default {
-	data() {
-		return {
-			show: false
-		};
-	},
-	methods: {
-		setDefault() {},
-		showRegionPicker() {
-			this.show = true;
-		}
-	}
-};
-</script>
-
 <style lang="scss" scoped>
 :v-deep(.line) {
 	color: $u-light-color;
 	font-size: 28rpx;
 }
+
 .wrap {
 	background-color: #f2f2f2;
+
 	.top {
 		background-color: #ffffff;
 		border-top: solid 2rpx $u-border-color;
 		padding: 22rpx;
+
 		.item {
 			display: flex;
 			font-size: 32rpx;
 			line-height: 100rpx;
 			align-items: center;
 			border-bottom: solid 2rpx $u-border-color;
+
 			.left {
 				width: 180rpx;
 			}
+
 			input {
 				text-align: left;
 			}
 		}
-		
+
 		.address {
 			padding: 20rpx 0;
+
 			textarea {
 				// width: 100%;
 				height: 150rpx;
@@ -99,8 +101,10 @@ export default {
 				padding: 20rpx;
 			}
 		}
+
 		.site-clipboard {
 			padding-right: 40rpx;
+
 			textarea {
 				// width: 100%;
 				height: 150rpx;
@@ -109,6 +113,7 @@ export default {
 				margin: 40rpx auto;
 				padding: 20rpx;
 			}
+
 			.clipboard {
 				display: flex;
 				justify-content: center;
@@ -116,6 +121,7 @@ export default {
 				font-size: 26rpx;
 				color: $u-tips-color;
 				height: 80rpx;
+
 				.icon {
 					margin-top: 6rpx;
 					margin-left: 10rpx;
@@ -123,20 +129,25 @@ export default {
 			}
 		}
 	}
+
 	.bottom {
 		margin-top: 20rpx;
 		padding: 40rpx;
 		padding-right: 0;
 		background-color: #ffffff;
 		font-size: 28rpx;
+
 		.tag {
 			display: flex;
+
 			.left {
 				width: 160rpx;
 			}
+
 			.right {
 				display: flex;
 				flex-wrap: wrap;
+
 				.tags {
 					width: 140rpx;
 					padding: 16rpx 8rpx;
@@ -151,22 +162,25 @@ export default {
 					color: $u-content-color;
 					line-height: 1;
 				}
+
 				.plus {
 					//padding: 10rpx 0;
 				}
 			}
 		}
+
 		.default {
 			margin-top: 50rpx;
 			display: flex;
 			justify-content: space-between;
 			border-bottom: solid 2rpx $u-border-color;
 			line-height: 64rpx;
+
 			.tips {
 				font-size: 24rpx;
 			}
-			.right {
-			}
+
+			.right {}
 		}
 	}
 }

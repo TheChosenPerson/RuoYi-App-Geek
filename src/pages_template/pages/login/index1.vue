@@ -31,31 +31,24 @@
 	</view>
 </template>
 
-<script>
-export default {
-	data() {
-		return {
-			tel: ''
-		}
-	},
-	computed: {
-		inputStyle() {
-			let style = {};
-			if(this.tel) {
-				style.color = "#fff";
-				style.backgroundColor = this.$u.color['warning'];
-			}
-			return style;
-		}
-	},
-	methods: {
-		submit() {
-			if(this.$u.test.mobile(this.tel)) {
-				this.$u.route({
-					url: 'pages/template/login/code'
-				})
-			}
-		}
+<script setup>
+import tab from '@/plugins/tab';
+import { ref, computed } from 'vue';
+
+const tel = ref('');
+
+const inputStyle = computed(() => {
+	let style = {};
+	if (tel.value) {
+		style.color = "#fff";
+		style.backgroundColor = '#f9c00c'; // 假设 $u.color['warning'] 对应的颜色值
+	}
+	return style;
+});
+
+const submit = () => {
+	if (/\d{11}/.test(tel.value)) { // 假设 $u.test.mobile 是简单的手机号验证
+		tab.navigateTo('/pages_template/pages/login/code');
 	}
 };
 </script>
@@ -63,6 +56,7 @@ export default {
 <style lang="scss" scoped>
 .wrap {
 	font-size: 28rpx;
+
 	.content {
 		width: 600rpx;
 		margin: 80rpx auto 0;
@@ -73,28 +67,32 @@ export default {
 			font-weight: 500;
 			margin-bottom: 100rpx;
 		}
+
 		input {
 			text-align: left;
 			margin-bottom: 10rpx;
 			padding-bottom: 6rpx;
 		}
+
 		.tips {
 			color: $u-info;
 			margin-bottom: 60rpx;
 			margin-top: 8rpx;
 			font-size: 12px;
 		}
+
 		.getCaptcha {
 			background-color: rgb(253, 243, 208);
 			color: $u-tips-color;
 			border: none;
 			font-size: 30rpx;
 			padding: 12rpx 0;
-			
+
 			&::after {
 				border: none;
 			}
 		}
+
 		.alternative {
 			color: $u-tips-color;
 			display: flex;
@@ -102,12 +100,13 @@ export default {
 			margin-top: 30rpx;
 		}
 	}
+
 	.buttom {
 		.loginType {
 			display: flex;
 			padding: 350rpx 150rpx 150rpx 150rpx;
-			justify-content:space-between;
-			
+			justify-content: space-between;
+
 			.item {
 				display: flex;
 				flex-direction: column;
@@ -116,12 +115,12 @@ export default {
 				font-size: 28rpx;
 			}
 		}
-		
+
 		.hint {
 			padding: 20rpx 40rpx;
 			font-size: 20rpx;
 			color: $u-tips-color;
-			
+
 			.link {
 				color: $u-warning;
 			}

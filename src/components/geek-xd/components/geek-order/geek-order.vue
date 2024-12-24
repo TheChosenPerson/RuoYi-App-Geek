@@ -86,7 +86,6 @@ function formatNumber(num, place) {
     position: relative;
     padding: 20rpx;
     background-color: white;
-    border: 1rpx solid rgb(183, 183, 183);
     border-radius: 20rpx;
     height: 360rpx;
     width: 700rpx;

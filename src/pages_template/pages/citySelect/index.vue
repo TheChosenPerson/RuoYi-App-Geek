@@ -1,3 +1,19 @@
+<script setup>
+import { ref } from 'vue';
+import citySelect from '@/components/u-city-select/u-city-select.vue';
+
+const height = ref(30);
+const bgColor = ref(uni.$u.color.bgColor);
+const marginTop = ref(30);
+const marginBottom = ref(30);
+const value = ref(false);
+const input = ref('');
+
+const cityChange = (e) => {
+	input.value = e.province.label + '-' + e.city.label + '-' + e.area.label;
+	input.value += e.province.value + '-' + e.city.value + '-' + e.area.value;
+};
+</script>
 <template>
 	<view class="u-demo">
 		<view class="u-demo-wrap">
@@ -16,32 +32,6 @@
 		</view>
 	</view>
 </template>
-
-<script>
-import citySelect from '@/components/u-city-select/u-city-select.vue';
-export default {
-	components: {
-		citySelect
-	},
-	data() {
-		return {
-			height: 30,
-			bgColor: this.$u.color.bgColor,
-			marginTop: 30,
-			marginBottom: 30,
-			value: false,
-			input: '',
-		};
-	},
-	methods: {
-		cityChange(e) {
-			this.input = e.province.label + '-' + e.city.label + '-' + e.area.label;
-			this.input += e.province.value + '-' + e.city.value + '-' + e.area.value;
-		}
-	}
-};
-</script>
-
 <style scoped>
 .btn-wrap {
 	margin: 100rpx 30rpx;
